@@ -22,4 +22,13 @@ public class CursoManager {
         }
         return -1;
     }
+    public static String getTitle(int id){
+        for (Curso cu: cursos){
+            if (cu.id == id){
+                return cu.title;
+            }
+        }
+        return null;
+    }
+    
 }

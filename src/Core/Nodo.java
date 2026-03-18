@@ -4,6 +4,7 @@
  */
 package Core;
 
+import Core.Arbol.AVL;
 import java.util.ArrayList;
 
 /**
@@ -12,6 +13,7 @@ import java.util.ArrayList;
  */
 public class Nodo {
     public int id;
+    public String title;
     public Nodo left;
     public Nodo right;
     public double metrica;
@@ -19,11 +21,12 @@ public class Nodo {
 
     public Nodo(int id) {
         this.id = id;
+        this.title = CursoManager.getTitle(id);
         this.metrica = CursoManager.getSatisfaction(id);
     }
     
-    public ArrayList<Object> Información(){
-        ArrayList<Object> datos = new ArrayList<>();
+    public ArrayList<Object> Información(){    //Para obtener los datos de la lista resultante, se deben castear
+        ArrayList<Object> datos = new ArrayList<>();      
         for(Curso curso:CursoManager.cursos){
             if(curso.id == this.id){
                 datos.add(curso.id);
@@ -44,12 +47,13 @@ public class Nodo {
         return datos;
     }
     public int factorbalanceo(){
-        return AlturaA(this.right)-AlturaA(this.left); 
+        return AVL.alturaA(this.right)-AVL.alturaA(this.left); 
     }
     
-    public static int AlturaA(Nodo raiz){
-        if(raiz == null)
-           return 0;
-        return 1+Math.max(AlturaA(raiz.left), AlturaA(raiz.right));
+    public int nivelNodo(Nodo raiz){
+        if(raiz==this){
+            return 0;
+        }
+        return 1 + AVL.alturaA(this.right)-AVL.alturaA(this.left);
     }
 }

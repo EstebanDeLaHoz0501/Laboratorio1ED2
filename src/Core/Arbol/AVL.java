@@ -4,8 +4,7 @@
  */
 package Core.Arbol;
 
-import Core.Curso;
-import Core.CursoManager;
+
 import Core.Nodo;
 import java.util.ArrayList;
 
@@ -19,21 +18,32 @@ public class AVL {
     public AVL(Nodo raiz) {
         this.raiz = raiz;
     }
-    
-    public Nodo insertar(Nodo raiz, int id){
-        double metrica = CursoManager.getSatisfaction(id);
-        if(raiz== null){
-            return new Nodo(id);
-        }
-        if(raiz.metrica < metrica){
-            raiz.right = insertar(raiz.right, id);
-        }
-        if(raiz.metrica < metrica){
-            raiz.left = insertar(raiz.left, id);
-        }
-        return raiz;
+        
+    public static int alturaA(Nodo raiz){
+        if(raiz == null)
+           return 0;
+        return 1+Math.max(alturaA(raiz.left), alturaA(raiz.right));
     }
-
     
-    
+    public void porNiveles(Nodo raiz){
+        if(raiz != null){
+            return;
+        }
+        ArrayList<Nodo> queue = new ArrayList<>();
+        queue.add(raiz);
+        porNivelesAux(queue);
+    }
+    public void porNivelesAux(ArrayList<Nodo> queue){
+        if(queue.isEmpty())
+            return;
+        Nodo p = queue.removeFirst();
+        System.out.println(p.title);
+        if(p.left != null){
+            queue.add(p.left);
+        }
+        if(p.right != null){
+            queue.add(p.right);
+        }
+        porNivelesAux(queue);
+    }
 }

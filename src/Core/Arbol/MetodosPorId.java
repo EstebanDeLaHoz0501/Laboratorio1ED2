@@ -12,18 +12,23 @@ import java.util.ArrayList;
  *
  * @author Esteban
  */
-public class MetodosPorId {
-    
+public class MetodosPorId {  //todos los metodos con "Aux" son metodos que no se ejecutan directamente,
+                             //sino por su versión sin "Aux"
     public static Nodo insertar(Nodo raiz, int id){
+        Nodo root = insertarAux(raiz, id);
+        AVL.balancear(raiz);
+        return root;
+    }
+    public static Nodo insertarAux(Nodo raiz, int id){
         double metrica = CursoManager.getSatisfaction(id);
         if(raiz== null){
             return new Nodo(id);
         }
         if(raiz.metrica < metrica){
-            raiz.right = insertar(raiz.right, id);
+            raiz.right = insertarAux(raiz.right, id);
         }
         if(raiz.metrica < metrica){
-            raiz.left = insertar(raiz.left, id);
+            raiz.left = insertarAux(raiz.left, id);
         }
         return raiz;
     }
@@ -101,6 +106,7 @@ public class MetodosPorId {
                     }
                 }
             }
+            AVL.balancear(root);
             return true;
         }
         return false;

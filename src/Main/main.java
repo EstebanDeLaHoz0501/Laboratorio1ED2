@@ -9,5 +9,5 @@ package Main;
  * @author Esteban
  */
 public class main {
-    
+
 }

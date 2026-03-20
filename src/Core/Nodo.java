@@ -17,7 +17,6 @@ public class Nodo {
     public Nodo left;
     public Nodo right;
     public double metrica;
-    public int balance;
 
     public Nodo(int id) {
         this.id = id;

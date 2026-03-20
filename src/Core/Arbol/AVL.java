@@ -12,8 +12,8 @@ import java.util.ArrayList;
  *
  * @author Esteban
  */
-public class AVL {
-    Nodo raiz;
+public class AVL {              //todos los metodos con "Aux" son metodos que no se ejecutan directamente,
+    Nodo raiz;                  //sino por su version sin el "Aux"
 
     public AVL(Nodo raiz) {
         this.raiz = raiz;
@@ -45,5 +45,27 @@ public class AVL {
             queue.add(p.right);
         }
         porNivelesAux(queue);
+    }
+    public static Nodo balancear(Nodo raiz){
+        if(raiz == null){
+            return null;
+        }
+        raiz.left = balancear(raiz.left);
+        raiz.right = balancear(raiz.right);
+        
+        if(raiz.factorbalanceo()>1 && raiz.right.factorbalanceo()>=0)
+            return Rotaciones.RSI(raiz);
+        
+        if(raiz.factorbalanceo()<-1 && raiz.left.factorbalanceo()<=0)
+            return Rotaciones.RSD(raiz);      
+        
+        if(raiz.factorbalanceo()>1 && raiz.right.factorbalanceo()<0)
+            return Rotaciones.RDDI(raiz);
+        
+        if(raiz.factorbalanceo()<-1 && raiz.left.factorbalanceo()>0)
+            return Rotaciones.RDID(raiz);       
+        
+
+        return raiz;
     }
 }

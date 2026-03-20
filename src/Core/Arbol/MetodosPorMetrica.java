@@ -57,6 +57,7 @@ public class MetodosPorMetrica {
                     }
                 }
             }
+            AVL.balancear(root);
             return true;
         }
         return false;

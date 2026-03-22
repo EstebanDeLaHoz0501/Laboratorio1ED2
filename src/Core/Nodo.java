@@ -98,5 +98,9 @@ public class Nodo {
     public void setRight(Nodo right) {
         this.right = right;
     }
+
+    public void setMetrica(double metrica) {
+        this.metrica = metrica;
+    }
     
 }

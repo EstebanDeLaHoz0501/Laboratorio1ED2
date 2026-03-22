@@ -25,11 +25,13 @@ public class OperacionesArbol {
         if(raiz== null){
             return new Nodo(CursoManager.getCurso(id));
         }
-        if(raiz.metrica < metrica){
-            raiz.right = insertarAux(raiz.right, id);
+        if(raiz.getMetrica() < metrica){
+            raiz.setRight(insertarAux(raiz.getRight(), id));
+            //raiz.right = insertarAux(raiz.right, id);
         }
-        if(raiz.metrica < metrica){
-            raiz.left = insertarAux(raiz.left, id);
+        if(raiz.getMetrica() < metrica){
+            raiz.setLeft(insertarAux(raiz.getLeft(), id));
+            //raiz.left = insertarAux(raiz.left, id);
         }
         return raiz;
     }
@@ -48,25 +50,25 @@ public class OperacionesArbol {
             lista.add(null);
             return lista;
         }
-        if(p.metrica==metrica){
+        if(p.getMetrica()==metrica){
             lista.add(p);
             lista.add(pad);
             lista.add(abue);
             Nodo tio = null;
             if(abue != null){
-                if(abue.left==pad){
-                    tio = abue.right;
+                if(abue.getLeft()==pad){
+                    tio = abue.getRight();
                 }else{
-                    tio = abue.left;
+                    tio = abue.getLeft();
                 }
             }
             lista.add(tio);
             return lista;
         }
-        if(p.metrica>metrica){
-            return searchAux(metrica, p.left, p, pad);
+        if(p.getMetrica() >metrica){
+            return searchAux(metrica, p.getLeft(), p, pad);
         }else{
-            return searchAux(metrica, p.right, p, pad);
+            return searchAux(metrica, p.getRight(), p, pad);
         }
     }
     
@@ -74,38 +76,53 @@ public class OperacionesArbol {
         Nodo p = (Nodo) search(root, id).get(0);
         Nodo pad = (Nodo) search(root, id).get(1);
         if(p!=null){
-            if(p.left == null & p.right == null){
-                if(pad.left==p){
-                    pad.left=null;
+            if(p.getLeft() == null & p.getRight() == null){
+                if(pad.getLeft()==p){
+                    pad.setLeft(null);
+                    //pad.left=null;
                 }else{
-                    pad.right=null;
+                    pad.setRight(null);
                 }
-            }else if(p.left== null & p.right != null){
-                if(pad.left==p){
-                    pad.left=p.right;
+            }else if(p.getLeft()== null & p.getRight() != null){
+                if(pad.getLeft()==p){
+                    pad.setLeft(p.getRight());
+                    //pad.left=p.right;
                 }else{
-                    pad.right=p.right;
+                    
+                    pad.setRight(p.getRight());
+                    //pad.right=p.right;
                 }
-            }else if(p.left!= null & p.right == null){
-                if(pad.left==p){
-                    pad.left=p.left;
+            }else if(p.getLeft()!= null & p.getRight() == null){
+                if(pad.getLeft()==p){
+                    pad.setLeft(p.getLeft());
+                    //pad.left=p.left;
                 }else{
-                    pad.right=p.left;
+                    pad.setRight(p.getLeft());
+                    //pad.right=p.left;
                 }
             }else{
                 Nodo psus = (Nodo) sus(p).get(0);
                 Nodo padsus = (Nodo) sus(p).get(1);
                 Nodo phijo = (Nodo) sus(p).get(2);
                 if(padsus == p){
-                    p.metrica = psus.metrica;
-                    padsus.right = psus.right;
+                    p.setMetrica(psus.getMetrica());
+                    //p.metrica = psus.metrica;
+                    
+                    padsus.setRight(psus.getRight());
+                    //padsus.right = psus.right;
                 }else{
                     if(phijo == null){
-                    p.metrica = psus.metrica;
-                    padsus.left = null;
+                    p.setMetrica(psus.getMetrica());
+                    //p.metrica = psus.metrica;
+                    
+                    padsus.setLeft(null);
+                    //padsus.left = null;
                     }else{
-                        p.metrica = psus.metrica;
-                        padsus.left = phijo;
+                        p.setMetrica(psus.getMetrica());
+                        //p.metrica = psus.metrica;
+                        
+                        padsus.setLeft(phijo);
+                        //padsus.left = phijo;
                     }
                 }
             }
@@ -118,15 +135,15 @@ public class OperacionesArbol {
     //que es sus? preguntale a esteban
     public static ArrayList sus(Nodo node){
         ArrayList<Nodo> lista = new ArrayList<>();
-        Nodo p = node.right;
+        Nodo p = node.getRight();
         Nodo pad = node;
-        while(p.left!=null){
-            p = p.left;
+        while(p.getLeft()!=null){
+            p = p.getLeft();
             pad = p;
         }
         lista.add(pad);
         lista.add(p);
-        lista.add(p.right);
+        lista.add(p.getRight());
         return lista;
     }
     

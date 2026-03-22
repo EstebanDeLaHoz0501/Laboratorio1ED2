@@ -3,7 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Core;
-
+import java.time.format.DateTimeFormatter;
+import java.time.Instant;
+import java.time.format.DateTimeParseException;
+/**
 /**
  *
  * @author Esteban
@@ -11,10 +14,11 @@ package Core;
 public class Curso {
     public int id;
     String title;
+    String url;
     double rating;
     int num_reviews;
     int num_published_lectures;
-    String created;
+    Instant created;
     String last_update_date;
     String duration;
     int instructors_id;
@@ -25,9 +29,10 @@ public class Curso {
 
     double satisfaction;
 
-    public Curso(int id, String title, double rating, int num_reviews, int num_published_lectures, String created, String last_update_date, String duration, int instructors_id, String image, int positive_reviews, int negative_reviews, int neutral_reviews) {
+    public Curso(int id, String title, String url, double rating, int num_reviews, int num_published_lectures, Instant created, String last_update_date, String duration, int instructors_id, String image, int positive_reviews, int negative_reviews, int neutral_reviews) {
         this.id = id;
         this.title = title;
+        this.url = url;
         this.rating = rating;
         this.num_reviews = num_reviews;
         this.num_published_lectures = num_published_lectures;

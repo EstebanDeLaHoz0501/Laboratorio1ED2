@@ -14,6 +14,8 @@ import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.Scanner;
 import java.time.format.DateTimeFormatter;
+import java.time.Instant;
+import java.time.format.DateTimeParseException;
 /**
  *
  * @author Esteban
@@ -39,9 +41,21 @@ public class CursoManager {
         return null;
     }
     
+    public boolean checkExistance(int id){
+        for(Curso cur: this.cursos){
+            if( cur.id == id) return true;
+        }
+        
+        return false;
+    }
     //Busca el id en el .csv
-    public static void addCurso(Scanner sc, String fileName, String id){
-        try{
+    public  boolean addCurso(Scanner sc, String fileName, String id){
+            //si no se tiene el curso, se puede añadir
+            
+            if(this.checkExistance(Integer.parseInt(id))== false){
+                
+               try{ 
+                   
                 FileReader outFile = new FileReader(fileName+".csv");
                 BufferedReader BufferLectura = new BufferedReader(outFile);
                 String line = null;
@@ -55,29 +69,33 @@ public class CursoManager {
                        String title = temp[1];
                        String url = temp[2];
                        double rating = Double.parseDouble(temp[3]);
-                       int num_reviews = Integer.parseInt(temp[4]);
-                       int num_published_lectures = Integer.parseInt(temp[5]);
-                       created = created;
-                       last_update_date = last_update_date;
+                       int numRev= Integer.parseInt(temp[4]);
+                       int numPub= Integer.parseInt(temp[5]);
+                       Instant created = null;
+                       created = Instant.parse(temp[6]);
+                       String lastUpdDate = temp[7]; //de pronto cambia esto a una date?
                        String duration = temp[8];
-                       int instructors_id = Integer.parseInt(temp[9]);
+                       int instrId = Integer.parseInt(temp[9]);
                        String image = temp[10];
-                       int positive_reviews = Integer.parseInt(temp[11]);
-                       int negative_reviews = Integer.parseInt(temp[12]);
-                       int neutral_reviews = Integer.parseInt(temp[13]);
+                       int posRev = Integer.parseInt(temp[11]);
+                       int negRev = Integer.parseInt(temp[12]);
+                       int neutRev = Integer.parseInt(temp[13]);
                        
-                       Curso curso = new Curso()
+                       Curso cur = new Curso(idInt, title, url, rating, numRev, numPub, created, lastUpdDate, duration, instrId, image, posRev, negRev, neutRev);
                        
                     }
            
                 }
                 BufferLectura.close();
-                
+                return true; //si se pudo crear, regresa true
                    
-    } catch (IOException ex) {
+                } catch (IOException ex) {
                 System.out.println("No se encontro archivo");
            
-            }
-    }
+                }
+            } 
+            return false; // si no, regresa false
+                
+        }
     
 }

@@ -13,7 +13,7 @@ import java.time.Instant;
  * @author Esteban
  */
 public class AVL {              //todos los metodos con "Aux" son metodos que no se ejecutan directamente,
-    Nodo raiz;                  //sino por su version sin el "Aux"
+    private Nodo raiz;                  //sino por su version sin el "Aux"
 
     public AVL(Nodo raiz) {
         this.raiz = raiz;
@@ -70,6 +70,12 @@ public class AVL {              //todos los metodos con "Aux" son metodos que no
             return Rotaciones.RDID(raiz);       
         
 
+        return raiz;
+    }
+    
+    //getters 
+
+    public Nodo getRaiz() {
         return raiz;
     }
     

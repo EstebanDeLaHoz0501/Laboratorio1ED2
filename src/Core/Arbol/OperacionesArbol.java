@@ -279,7 +279,7 @@ public class OperacionesArbol {
     }
     // retorna la lista de nodos
     public static ArrayList<Nodo> highlyGraded(Nodo root){
-        ArrayList<Nodo> nodos = new ArrayList<Nodo>();
+        ArrayList<Nodo> nodos = new ArrayList<>();
         highlyGradedAux(root, nodos);
         
         return nodos;
@@ -287,7 +287,7 @@ public class OperacionesArbol {
     }
     
     //para encontrar el promedio de reseñas
-    public static int sumTodasReseñas(Nodo root){
+    public static double sumTodasReseñas(Nodo root){
         if(root == null) return 0;
         int revNumber = root.getCurso().getNum_reviews();
         
@@ -296,15 +296,79 @@ public class OperacionesArbol {
     }
     
     //para encontrar el promedio de reseñas
-    public static int numNodos(Nodo root){
+    public static double numNodos(Nodo root){
         if (root == null) return 0;
         
         return 1 + numNodos(root.getLeft()) + numNodos(root.getRight());
     }
     
-    public static void posHigherThanAvg(Nodo root, ArrayList<Nodo> nodos){
+   public static double promedioRatings(AVL arbol){
+       return sumTodasReseñas(arbol.getRaiz())/numNodos(arbol.getRaiz()); 
+   }
+   
+   public static void posHigherThanAvgAux(Nodo root, AVL arbol, ArrayList<Nodo> nodos){
         if(root == null) return;
+        double avg = promedioRatings(arbol);
         
-        //if(root.getCurso().getPositive_reviews())
+        if(root.getCurso().getPositive_reviews() <= avg){
+            return;
+        }else{
+            nodos.add(root);
+        }
+        
+        posHigherThanAvgAux(root.getLeft(), arbol, nodos);
+        posHigherThanAvgAux(root.getRight(), arbol, nodos);
     }
+   
+   public static void negHigherThanAvgAux(Nodo root, AVL arbol, ArrayList<Nodo> nodos){
+       if(root == null) return;
+       double avg = promedioRatings(arbol);
+        
+       if(root.getCurso().getNegative_reviews() <= avg){
+           return;
+       }else{
+         nodos.add(root);
+        }
+        
+        negHigherThanAvgAux(root.getLeft(), arbol, nodos);
+        negHigherThanAvgAux(root.getRight(), arbol, nodos);
+    }
+    
+   public static void neutHigherThanAvgAux(Nodo root, AVL arbol, ArrayList<Nodo> nodos){
+        if(root == null) return;
+        double avg = promedioRatings(arbol);
+        
+        if(root.getCurso().getNeutral_reviews() <= avg){
+            return;
+        }else{
+            nodos.add(root);
+        }
+        
+        neutHigherThanAvgAux(root.getLeft(), arbol, nodos);
+        neutHigherThanAvgAux(root.getRight(), arbol, nodos);
+    } 
+   
+   public static ArrayList<Nodo> posHigherThanAvg(Nodo root, AVL arbol){
+       ArrayList<Nodo> nodos = new ArrayList<>();
+       posHigherThanAvgAux(root, arbol, nodos);
+       
+       return nodos;
+       
+   }
+   
+   public static ArrayList<Nodo> negHigherThanAvg(Nodo root, AVL arbol){
+       ArrayList<Nodo> nodos = new ArrayList<>();
+       negHigherThanAvgAux(root, arbol, nodos);
+       
+       return nodos;
+       
+   }
+   
+   public static ArrayList<Nodo> neutHigherThanAvg(Nodo root, AVL arbol){
+       ArrayList<Nodo> nodos = new ArrayList<>();
+       neutHigherThanAvgAux(root, arbol, nodos);
+       
+       return nodos;
+       
+   }
 }

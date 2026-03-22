@@ -23,6 +23,7 @@ public class Nodo {
     //Si no existe el curso, no se puede crear el nodo
     public Nodo(Curso curso) {
         this.curso = curso;
+        
         this.id = curso.getId();
         
         this.title = CursoManager.getTitle(id);

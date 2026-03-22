@@ -98,7 +98,8 @@ public class CursoManager {
                 
         }
     
-    public Curso getCurso(int id){
+    //estatico pq solo hay un curso manager
+    public static Curso getCurso(int id){
         for(Curso cur: cursos){
             if(cur.getId() == id){
                 return cur;

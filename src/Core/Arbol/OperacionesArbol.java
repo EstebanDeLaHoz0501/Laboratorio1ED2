@@ -21,10 +21,11 @@ public class OperacionesArbol {
         AVL.balancear(raiz);
         return root;
     }
+    
     public static Nodo insertarAux(Nodo raiz, int id){
         double metrica = CursoManager.getSatisfaction(id);
         if(raiz== null){
-            return new Nodo(id);
+            return new Nodo(CursoManager.getCurso(id));
         }
         if(raiz.metrica < metrica){
             raiz.right = insertarAux(raiz.right, id);
@@ -70,6 +71,7 @@ public class OperacionesArbol {
             return searchAux(metrica, p.right, p, pad);
         }
     }
+    
     public static boolean delete(Nodo root, int id){
         Nodo p = (Nodo) search(root, id).get(0);
         Nodo pad = (Nodo) search(root, id).get(1);
@@ -180,8 +182,27 @@ public class OperacionesArbol {
         return false;
     }
     
-    public static void getAfterDate(Nodo root, Instant date, ArrayList<Nodo> nodos){
+    //Llena la lista de nodos
+    public static void getAfterDateAux(Nodo root, Instant date, ArrayList<Nodo> nodos){
         if(root == null) return;
         
+        if(root.curso.getCreated().isBefore(date)){
+            return;
+        } else{
+            nodos.add(root);
+        }
+        
+        getAfterDateAux(root.left, date, nodos);
+        getAfterDateAux(root.right, date, nodos);
+        
+        
+    }
+    
+    //retorna la lista de nodos
+    public static ArrayList<Nodo> getAfterDate(Nodo root, Instant date){
+        ArrayList<Nodo> afterDate = new ArrayList<Nodo>();
+        getAfterDateAux(root, date, afterDate);
+        
+        return afterDate;
     }
 }

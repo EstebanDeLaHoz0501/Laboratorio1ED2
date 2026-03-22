@@ -37,6 +37,7 @@ public class MetodosPorId {  //todos los metodos con "Aux" son metodos que no se
         double metrica = CursoManager.getSatisfaction(id);
         return searchAux(metrica, root, null, null);
     }
+    
     public static ArrayList<Nodo> searchAux(double metrica, Nodo p, Nodo pad, Nodo abue){
         ArrayList<Nodo> lista = new ArrayList<>();
         if(p==null){
@@ -111,6 +112,8 @@ public class MetodosPorId {  //todos los metodos con "Aux" son metodos que no se
         }
         return false;
     }
+    
+    //que es sus? preguntale a esteban
     public static ArrayList sus(Nodo node){
         ArrayList<Nodo> lista = new ArrayList<>();
         Nodo p = node.right;

@@ -16,7 +16,7 @@ public class Curso {
     int num_published_lectures;
     String created;
     String last_update_date;
-    int duration;
+    String duration;
     int instructors_id;
     String image;
     int positive_reviews;
@@ -25,7 +25,7 @@ public class Curso {
 
     double satisfaction;
 
-    public Curso(int id, String title, double rating, int num_reviews, int num_published_lectures, String created, String last_update_date, int duration, int instructors_id, String image, int positive_reviews, int negative_reviews, int neutral_reviews) {
+    public Curso(int id, String title, double rating, int num_reviews, int num_published_lectures, String created, String last_update_date, String duration, int instructors_id, String image, int positive_reviews, int negative_reviews, int neutral_reviews) {
         this.id = id;
         this.title = title;
         this.rating = rating;

@@ -33,6 +33,7 @@ public class AVL {              //todos los metodos con "Aux" son metodos que no
         queue.add(raiz);
         porNivelesAux(queue);
     }
+    
     public void porNivelesAux(ArrayList<Nodo> queue){
         if(queue.isEmpty())
             return;
@@ -46,6 +47,7 @@ public class AVL {              //todos los metodos con "Aux" son metodos que no
         }
         porNivelesAux(queue);
     }
+    
     public static Nodo balancear(Nodo raiz){
         if(raiz == null){
             return null;

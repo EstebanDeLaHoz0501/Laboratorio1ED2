@@ -7,7 +7,7 @@ package Core.Arbol;
 
 import Core.Nodo;
 import java.util.ArrayList;
-
+import java.time.Instant;
 /**
  *
  * @author Esteban
@@ -70,4 +70,5 @@ public class AVL {              //todos los metodos con "Aux" son metodos que no
 
         return raiz;
     }
+    
 }

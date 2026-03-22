@@ -35,14 +35,14 @@ public class CursoManager {
     public static String getTitle(int id){
         for (Curso cu: cursos){
             if (cu.id == id){
-                return cu.title;
+                return cu.getTitle();
             }
         }
         return null;
     }
     
     public boolean checkExistance(int id){
-        for(Curso cur: this.cursos){
+        for(Curso cur: cursos){
             if( cur.id == id) return true;
         }
         
@@ -98,4 +98,12 @@ public class CursoManager {
                 
         }
     
+    public Curso getCurso(int id){
+        for(Curso cur: cursos){
+            if(cur.getId() == id){
+                return cur;
+            }
+        }
+        return null;
+    }
 }

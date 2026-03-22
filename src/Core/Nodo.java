@@ -12,24 +12,30 @@ import java.util.ArrayList;
  * @author Esteban
  */
 public class Nodo {
+    //metrica == satisfaccion
     public int id;
     public String title;
-    public Nodo left;
-    public Nodo right;
+    public Nodo left = null;
+    public Nodo right = null;
     public double metrica;
-
-    public Nodo(int id) {
-        this.id = id;
+    public Curso curso;
+    
+    //Si no existe el curso, no se puede crear el nodo
+    public Nodo(Curso curso) {
+        this.curso = curso;
+        this.id = curso.getId();
+        
         this.title = CursoManager.getTitle(id);
         this.metrica = CursoManager.getSatisfaction(id);
     }
     
-    public ArrayList<Object> Información(){    //Para obtener los datos de la lista resultante, se deben castear
+    /*public ArrayList<Object> Informacion(){    //Para obtener los datos de la lista resultante, se deben castear
         ArrayList<Object> datos = new ArrayList<>();      
         for(Curso curso:CursoManager.cursos){
             if(curso.id == this.id){
-                datos.add(curso.id);
+                datos.add(curso.getId());
                 datos.add(curso.title);
+                datos.add(curso.url);
                 datos.add(curso.rating);
                 datos.add(curso.num_reviews);
                 datos.add(curso.num_published_lectures);
@@ -44,7 +50,8 @@ public class Nodo {
             }
         }
         return datos;
-    }
+    }*/
+    
     public int factorbalanceo(){
         return AVL.alturaA(this.right)-AVL.alturaA(this.left); 
     }

@@ -14,10 +14,14 @@ import java.util.ArrayList;
  *
  * @author Esteban
  */
+
+//nota: Metrica == Satisfaccion 
+
 public class MetodosPorMetrica {
     public static ArrayList<Nodo> search(Nodo root, double metrica){
         return searchAux(metrica, root, null, null);
     }
+    
     public static boolean delete(Nodo root, double metrica){
         Nodo p = (Nodo) search(root, metrica).get(0);
         Nodo pad = (Nodo) search(root, metrica).get(1);

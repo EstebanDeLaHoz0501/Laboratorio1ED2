@@ -22,7 +22,7 @@ public class AVL {              //todos los metodos con "Aux" son metodos que no
     public static int alturaA(Nodo raiz){
         if(raiz == null)
            return 0;
-        return 1+Math.max(alturaA(raiz.left), alturaA(raiz.right));
+        return 1+Math.max(alturaA(raiz.getLeft()), alturaA(raiz.getRight()));
     }
     
     public void porNiveles(Nodo raiz){
@@ -38,12 +38,13 @@ public class AVL {              //todos los metodos con "Aux" son metodos que no
         if(queue.isEmpty())
             return;
         Nodo p = queue.removeFirst();
-        System.out.println(p.title);
-        if(p.left != null){
-            queue.add(p.left);
+        //cambien eso, que aparezca en la interfaz
+        //System.out.println(p.title);
+        if(p.getLeft() != null){
+            queue.add(p.getLeft());
         }
-        if(p.right != null){
-            queue.add(p.right);
+        if(p.getRight() != null){
+            queue.add(p.getRight());
         }
         porNivelesAux(queue);
     }
@@ -52,19 +53,20 @@ public class AVL {              //todos los metodos con "Aux" son metodos que no
         if(raiz == null){
             return null;
         }
-        raiz.left = balancear(raiz.left);
-        raiz.right = balancear(raiz.right);
+        raiz.setLeft(balancear(raiz.getLeft()));
+        raiz.setRight(balancear(raiz.getRight()));
+
         
-        if(raiz.factorbalanceo()>1 && raiz.right.factorbalanceo()>=0)
+        if(raiz.factorbalanceo()>1 && raiz.getRight().factorbalanceo()>=0)
             return Rotaciones.RSI(raiz);
         
-        if(raiz.factorbalanceo()<-1 && raiz.left.factorbalanceo()<=0)
+        if(raiz.factorbalanceo()<-1 && raiz.getLeft().factorbalanceo()<=0)
             return Rotaciones.RSD(raiz);      
         
-        if(raiz.factorbalanceo()>1 && raiz.right.factorbalanceo()<0)
+        if(raiz.factorbalanceo()>1 && raiz.getRight().factorbalanceo()<0)
             return Rotaciones.RDDI(raiz);
         
-        if(raiz.factorbalanceo()<-1 && raiz.left.factorbalanceo()>0)
+        if(raiz.factorbalanceo()<-1 && raiz.getLeft().factorbalanceo()>0)
             return Rotaciones.RDID(raiz);       
         
 

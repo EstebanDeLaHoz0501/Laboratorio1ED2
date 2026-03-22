@@ -13,12 +13,12 @@ import java.util.ArrayList;
  */
 public class Nodo {
     //metrica == satisfaccion
-    public int id;
-    public String title;
-    public Nodo left = null;
-    public Nodo right = null;
-    public double metrica;
-    public Curso curso;
+    private int id;
+    private String title;
+    private Nodo left = null;
+    private Nodo right = null;
+    private double metrica;
+    private Curso curso;
     
     //Si no existe el curso, no se puede crear el nodo
     public Nodo(Curso curso) {
@@ -63,4 +63,40 @@ public class Nodo {
         }
         return 1 + AVL.alturaA(this.right)-AVL.alturaA(this.left);
     }
+
+    //GETTERS
+    public int getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public Nodo getLeft() {
+        return left;
+    }
+
+    public Nodo getRight() {
+        return right;
+    }
+
+    public double getMetrica() {
+        return metrica;
+    }
+
+    public Curso getCurso() {
+        return curso;
+    }
+    
+    //SETTERS
+
+    public void setLeft(Nodo left) {
+        this.left = left;
+    }
+
+    public void setRight(Nodo right) {
+        this.right = right;
+    }
+    
 }

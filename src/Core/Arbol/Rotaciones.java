@@ -12,23 +12,27 @@ import Core.Nodo;
  */
 public class Rotaciones {
     public static Nodo RSI(Nodo node){
-        Nodo aux = node.right;
-        node.right = aux.left;
-        aux.left=node;
+        Nodo aux = node.getRight();
+        node.setRight(aux.getLeft());
+        aux.setLeft(node);
+
         return aux;
     }
     public static Nodo RSD(Nodo node){
-        Nodo aux = node.left;
-        node.left = aux.right;
-        aux.right=node;
+        Nodo aux = node.getLeft();
+        node.setLeft(aux.getRight());
+        aux.setRight(node);
+        
         return aux;
     }
     public static Nodo RDDI(Nodo node){
-        node.right = RSD(node.right);
+        node.setRight(RSD(node.getRight()));
+        //node.right = RSD(node.getRight());
         return RSI(node);
     }
     public static Nodo RDID(Nodo node){
-        node.left = RSI(node.left);
+        node.setLeft(RSI(node.getLeft()));
+        //node.left = RSI(node.getLeft());
         return RSD(node);
     }
 }

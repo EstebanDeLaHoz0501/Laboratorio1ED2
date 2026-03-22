@@ -1,7 +1,5 @@
 package Core.Arbol;
 
-import static Core.Arbol.MetodosPorId.searchAux;
-import static Core.Arbol.MetodosPorId.sus;
 import Core.CursoManager;
 import Core.Nodo;
 import java.time.Instant;
@@ -182,18 +180,21 @@ public class OperacionesArbol {
         return false;
     }
     
+    
+    //PUNTO 4:
+    
     //Llena la lista de nodos
     public static void getAfterDateAux(Nodo root, Instant date, ArrayList<Nodo> nodos){
         if(root == null) return;
         
-        if(root.curso.getCreated().isBefore(date)){
+        if(root.getCurso().getCreated().isBefore(date)){
             return;
         } else{
             nodos.add(root);
         }
         
-        getAfterDateAux(root.left, date, nodos);
-        getAfterDateAux(root.right, date, nodos);
+        getAfterDateAux(root.getLeft(), date, nodos);
+        getAfterDateAux(root.getRight(), date, nodos);
         
         
     }
@@ -204,5 +205,76 @@ public class OperacionesArbol {
         getAfterDateAux(root, date, afterDate);
         
         return afterDate;
+    }
+    
+    //Llena la lista de nodos
+    public static void classesInRangeAux(Nodo root, int min, int max, ArrayList<Nodo> nodos){
+        if (root == null) return;
+        
+        //para abreviar el if
+        int numLectures = root.getCurso().getNum_published_lectures();
+        
+        if(numLectures <= min || numLectures >= max){
+            return;
+        } else{
+            nodos.add(root);
+        }
+        
+        classesInRangeAux(root.getLeft(), min, max, nodos);
+        classesInRangeAux(root.getRight(), min, max, nodos);
+        
+    }
+    
+    //retorna la lista de nodos
+    public static ArrayList<Nodo> classesInRange(Nodo root, int min, int max){
+        ArrayList<Nodo> nodos = new ArrayList<Nodo>();
+        classesInRangeAux(root, min, max, nodos);
+        
+        return nodos;
+  
+    }
+    
+    //llena la lista de nodos
+    public static void highlyGradedAux(Nodo root, ArrayList<Nodo> nodos){
+        if(root == null) return;
+        
+        if(root.getCurso().getPositive_reviews() <= root.getCurso().getNegative_reviews() + root.getCurso().getNeutral_reviews()){
+            return;
+        } else{
+            nodos.add(root);
+        }
+        
+        highlyGradedAux(root.getLeft(), nodos);
+        highlyGradedAux(root.getRight(), nodos);
+    }
+    // retorna la lista de nodos
+    public static ArrayList<Nodo> highlyGraded(Nodo root){
+        ArrayList<Nodo> nodos = new ArrayList<Nodo>();
+        highlyGradedAux(root, nodos);
+        
+        return nodos;
+        
+    }
+    
+    //para encontrar el promedio de reseñas
+    public static int sumTodasReseñas(Nodo root){
+        if(root == null) return 0;
+        int revNumber = root.getCurso().getNum_reviews();
+        
+        return revNumber + sumTodasReseñas(root.getLeft()) + sumTodasReseñas(root.getRight());
+        
+    }
+    
+    //para encontrar el promedio de reseñas
+    public static int numNodos(Nodo root){
+        if (root == null) return 0;
+        
+        return 1 + numNodos(root.getLeft()) + numNodos(root.getRight());
+    }
+    
+    public static void posHigherThanAvg(Nodo root, ArrayList<Nodo> nodos){
+        if(root == null) return;
+        
+        if(root.getCurso().getPositive_reviews())
     }
 }

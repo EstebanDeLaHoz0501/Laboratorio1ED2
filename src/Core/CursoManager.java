@@ -22,7 +22,8 @@ import java.time.format.DateTimeParseException;
  */
 public class CursoManager {  
         
-    public static ArrayList<Curso> cursos;
+    public static ArrayList<Curso> cursos = new ArrayList<>();
+
 
     public static double getSatisfaction(int id){
         for (Curso cu: cursos){
@@ -42,10 +43,11 @@ public class CursoManager {
     }
     
     public boolean checkExistance(int id){
-        for(Curso cur: cursos){
-            if( cur.id == id) return true;
+        if(this.cursos != null){
+            for(Curso cur: cursos){
+                if( cur.id == id) return true;
+            }
         }
-        
         return false;
     }
     //Busca el id en el .csv
@@ -55,7 +57,6 @@ public class CursoManager {
             if(this.checkExistance(Integer.parseInt(id))== false){
                 
                try{ 
-                   
                 FileReader outFile = new FileReader(fileName+".csv");
                 BufferedReader BufferLectura = new BufferedReader(outFile);
                 String line = null;
@@ -82,7 +83,7 @@ public class CursoManager {
                        int neutRev = Integer.parseInt(temp[13]);
                        
                        Curso cur = new Curso(idInt, title, url, rating, numRev, numPub, created, lastUpdDate, duration, instrId, image, posRev, negRev, neutRev);
-                       
+                       this.cursos.add(cur);
                     }
            
                 }
@@ -90,6 +91,7 @@ public class CursoManager {
                 return true; //si se pudo crear, regresa true
                    
                 } catch (IOException ex) {
+                   System.out.println(ex);
                 System.out.println("No se encontro archivo");
            
                 }

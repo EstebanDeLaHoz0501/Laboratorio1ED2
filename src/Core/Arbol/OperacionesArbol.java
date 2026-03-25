@@ -2,6 +2,8 @@ package Core.Arbol;
 
 import Core.CursoManager;
 import Core.Nodo;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.Instant;
 import java.util.ArrayList;/*
 
@@ -14,9 +16,13 @@ import java.util.ArrayList;/*
  */
 public class OperacionesArbol {
     //METODOS POR ID
-    public static Nodo insertar(Nodo raiz, int id){
+    public static Nodo insertar1(AVL tree, int id){
+        return new Nodo(CursoManager.getCurso(id));
+    }
+    
+    public static Nodo insertar(Nodo raiz, int id, AVL tree){
         Nodo root = insertarAux(raiz, id);
-        AVL.balancear(raiz);
+        tree.balancear(raiz);
         return root;
     }
     
@@ -72,7 +78,7 @@ public class OperacionesArbol {
         }
     }
     
-    public static boolean delete(Nodo root, int id){
+    public static boolean delete(Nodo root, int id, AVL tree){
         Nodo p = (Nodo) search(root, id).get(0);
         Nodo pad = (Nodo) search(root, id).get(1);
         if(p!=null){
@@ -126,7 +132,7 @@ public class OperacionesArbol {
                     }
                 }
             }
-            AVL.balancear(root);
+            tree.balancear(root);
             return true;
         }
         return false;
@@ -152,7 +158,7 @@ public class OperacionesArbol {
         return searchAux(metrica, root, null, null);
     }
     
-    public static boolean delete(Nodo root, double metrica){
+    public static boolean delete(Nodo root, double metrica, AVL tree){
         Nodo p = (Nodo) search(root, metrica).get(0);
         Nodo pad = (Nodo) search(root, metrica).get(1);
         if(p!=null){
@@ -204,7 +210,7 @@ public class OperacionesArbol {
                     }
                 }
             }
-            AVL.balancear(root);
+            tree.balancear(root);
             return true;
         }
         return false;
@@ -371,4 +377,6 @@ public class OperacionesArbol {
        return nodos;
        
    }
+   
+   
 }

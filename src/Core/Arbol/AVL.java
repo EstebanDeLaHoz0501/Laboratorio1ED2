@@ -15,8 +15,8 @@ import java.time.Instant;
 public class AVL {              //todos los metodos con "Aux" son metodos que no se ejecutan directamente,
     private Nodo raiz;                  //sino por su version sin el "Aux"
 
-    public AVL(Nodo raiz) {
-        this.raiz = raiz;
+    public AVL() {
+
     }
         
     public static int alturaA(Nodo raiz){
@@ -49,7 +49,7 @@ public class AVL {              //todos los metodos con "Aux" son metodos que no
         porNivelesAux(queue);
     }
     
-    public static Nodo balancear(Nodo raiz){
+    public Nodo balancear(Nodo raiz){
         if(raiz == null){
             return null;
         }
@@ -77,6 +77,10 @@ public class AVL {              //todos los metodos con "Aux" son metodos que no
 
     public Nodo getRaiz() {
         return raiz;
+    }
+
+    public void setRaiz(Nodo raiz) {
+        this.raiz = raiz;
     }
     
 }

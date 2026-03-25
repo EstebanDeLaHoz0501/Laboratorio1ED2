@@ -1,0 +1,5 @@
+digraph AVL {
+node [shape=circle];
+513244 -> 1298780;
+513244 -> 1298780;
+}

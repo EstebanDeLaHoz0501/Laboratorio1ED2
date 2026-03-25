@@ -62,9 +62,47 @@ public class CursoManager {
                 String line = null;
                 
                 while((line = BufferLectura.readLine()) != null){
-                    String temp[] = line.split(",");
+                    
+                    // hay varios simbolos que oculta excel del csv, esto los quita
+                    line = line.trim();
+                    line = line.replaceAll(";+$", "");
+
+                    // quitar comillas que envuelven toda la fila
+                    if (line.startsWith("\"") && line.endsWith("\"")) {
+                        line = line.substring(1, line.length() - 1);
+                    }
+
+                    // convertir "" a "
+                    line = line.replace("\"\"", "\"");
+
+ 
+
+                    String temp[] = line.split(",(?=(?:[^\"]\"[^\"]\")[^\"]$)");
+                    
                     if (temp[0].equals(id)){
                         
+                        
+                     
+
+                 /// ESTO DE ACA ES PARA VOLVER A PONER LO QUE SE QUITO
+
+                    for (int i = 0; i < temp.length; i++) {
+                        temp[i] = temp[i].trim();
+
+                        // quitar comillas solo de los extremos de cada campo
+                        if (temp[i].startsWith("\"") && temp[i].endsWith("\"")) {
+                            temp[i] = temp[i].substring(1, temp[i].length() - 1);
+                        }
+                    }
+
+                    if (temp.length < 14) {
+                        System.out.println("Fila inválida, columnas detectadas: " + temp.length);
+                        System.out.println("Contenido: " + temp);
+                        continue;
+                    }
+
+                    
+
                        // Si se encuentra el id, se crea un curso con esas caracteristicas
                        int idInt = Integer.parseInt(temp[0]);
                        String title = temp[1];

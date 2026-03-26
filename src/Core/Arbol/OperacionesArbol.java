@@ -5,7 +5,7 @@ import Core.Nodo;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.Instant;
-import java.util.ArrayList;/*
+import java.util.ArrayList;
 
 
 /**
@@ -272,21 +272,21 @@ public class OperacionesArbol {
     }
     
     //llena la lista de nodos
-    public static void highlyGradedAux(Nodo root, ArrayList<Nodo> nodos){
+    public static void highlyGradedAux(Nodo root, ArrayList<String> nodos){
         if(root == null) return;
         
         if(root.getCurso().getPositive_reviews() <= root.getCurso().getNegative_reviews() + root.getCurso().getNeutral_reviews()){
             return;
         } else{
-            nodos.add(root);
+            nodos.add(Integer.toString(root.getId()));
         }
         
         highlyGradedAux(root.getLeft(), nodos);
         highlyGradedAux(root.getRight(), nodos);
     }
     // retorna la lista de nodos
-    public static ArrayList<Nodo> highlyGraded(Nodo root){
-        ArrayList<Nodo> nodos = new ArrayList<>();
+    public static ArrayList<String> highlyGraded(Nodo root){
+        ArrayList<String> nodos = new ArrayList<>();
         highlyGradedAux(root, nodos);
         
         return nodos;

@@ -3,12 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/luna/Desktop/Universidad/SEMESTRE%203/Laboratorio1ED2/src/Core/Arbol/Rotaciones.java</file>
             <file>file:/home/luna/Desktop/Universidad/SEMESTRE%203/Laboratorio1ED2/src/Core/Arbol/OperacionesArbol.java</file>
-            <file>file:/home/luna/Desktop/Universidad/SEMESTRE%203/Laboratorio1ED2/src/Core/Nodo.java</file>
+            <file>file:/home/luna/Desktop/Universidad/SEMESTRE%203/Laboratorio1ED2/src/Main/main.java</file>
+            <file>file:/home/luna/Desktop/Universidad/SEMESTRE%203/Laboratorio1ED2/src/Interfaz/interfaz.java</file>
             <file>file:/home/luna/Desktop/Universidad/SEMESTRE%203/Laboratorio1ED2/src/Core/CursoManager.java</file>
-            <file>file:/home/luna/Desktop/Universidad/SEMESTRE%203/Laboratorio1ED2/src/Core/Curso.java</file>
-            <file>file:/home/luna/Desktop/Universidad/SEMESTRE%203/Laboratorio1ED2/src/Core/Arbol/AVL.java</file>
+            <file>file:/home/luna/Desktop/Universidad/SEMESTRE%203/Laboratorio1ED2/src/Core/controllers/Controladores.java</file>
+            <file>file:/home/luna/Desktop/Universidad/SEMESTRE%203/Laboratorio1ED2/src/Core/Arbol/Graphviz.java</file>
         </group>
     </open-files>
 </project-private>

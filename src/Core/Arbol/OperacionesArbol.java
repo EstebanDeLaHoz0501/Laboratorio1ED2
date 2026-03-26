@@ -21,25 +21,25 @@ public class OperacionesArbol {
     }
     
     public static Nodo insertar(Nodo raiz, int id, AVL tree){
-        Nodo root = insertarAux(raiz, id);
-        tree.balancear(raiz);
+        Nodo root = insertarAux(raiz, id, tree);
+        System.out.println("paso x aqui");
         return root;
     }
     
-    public static Nodo insertarAux(Nodo raiz, int id){
+    public static Nodo insertarAux(Nodo raiz, int id, AVL tree){
         double metrica = CursoManager.getSatisfaction(id);
         if(raiz== null){
             return new Nodo(CursoManager.getCurso(id));
         }
         if(raiz.getMetrica() < metrica){
-            raiz.setRight(insertarAux(raiz.getRight(), id));
+            raiz.setRight(insertarAux(raiz.getRight(), id, tree));
             //raiz.right = insertarAux(raiz.right, id);
         }
-        if(raiz.getMetrica() < metrica){
-            raiz.setLeft(insertarAux(raiz.getLeft(), id));
+        if(raiz.getMetrica() > metrica){
+            raiz.setLeft(insertarAux(raiz.getLeft(), id, tree));
             //raiz.left = insertarAux(raiz.left, id);
         }
-        return raiz;
+        return tree.balancear(raiz);
     }
     
     public static ArrayList<Nodo> search(Nodo root, int id){
@@ -378,5 +378,12 @@ public class OperacionesArbol {
        
    }
    
-   
+    public static void Preorden (Nodo ndo){ 
+        if(ndo != null){ 
+            System.out.print(ndo.getId() + ", "); 
+            Preorden(ndo.getLeft());
+            
+            Preorden(ndo.getRight());
+        } 
+    }
 }

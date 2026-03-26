@@ -5,11 +5,14 @@
 package Interfaz;
 
 import Core.Arbol.AVL;
-import Core.Arbol.Graphviz;
-import Core.Arbol.OperacionesArbol;
 import Core.CursoManager;
-import Core.Nodo;
+import Core.controllers.Controladores;
+import Core.controllers.utils.Response;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Scanner;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 /**
@@ -24,11 +27,12 @@ public class interfaz extends javax.swing.JFrame {
     AVL tree;
     CursoManager CM;
     Scanner sc;
+    Controladores controlador;
     public interfaz() {
         initComponents();
-        this.tree = new AVL();
-        this.CM = new CursoManager();
-        this.sc = new Scanner(System.in);
+        this.tree = AVL.getInstance();
+        this.CM = CursoManager.getInstance();
+        this.controlador = new Controladores(CM, tree);
     }
 
     /**
@@ -226,21 +230,24 @@ public class interfaz extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void InsertarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InsertarBotonActionPerformed
-        if(CM.addCurso(this.sc,"src/Core/dataset_courses_with_reviews",InsertarTF.getText())){
-            int id = Integer.parseInt(InsertarTF.getText());
-            if(tree.getRaiz()==null){
-                tree.setRaiz( OperacionesArbol.insertar1(this.tree, id));
-            }else{
-                System.out.println("ola");
-                OperacionesArbol.insertar(this.tree.getRaiz(), id, this.tree);
-                Graphviz.exportarDOT(tree.getRaiz());
-                bigtree.setIcon(new ImageIcon("arbol.png"));
-                bigtree.revalidate(); 
-                bigtree.repaint();
-                System.out.println("deisyto");
-            }
+        String idTexto = InsertarTF.getText();
+        Response response = controlador.insertarNodo(idTexto);
+        if(response.isSuccess()){
+        try {
+            BufferedImage img = ImageIO.read(new File("arbol.png"));
+            bigtree.setIcon(new ImageIcon(img));
 
+            bigtree.revalidate();
+            bigtree.repaint();
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        javax.swing.JOptionPane.showMessageDialog(this, response.getMessage());
+        }else{
+            javax.swing.JOptionPane.showMessageDialog(this, response.getMessage());
+        }
+        
     }//GEN-LAST:event_InsertarBotonActionPerformed
 
     private void InsertarTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InsertarTFActionPerformed

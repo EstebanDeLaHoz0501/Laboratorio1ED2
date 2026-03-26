@@ -23,8 +23,18 @@ import java.time.format.DateTimeParseException;
 public class CursoManager {  
         
     public static ArrayList<Curso> cursos = new ArrayList<>();
+    private static CursoManager instance;
 
+    public static ArrayList<Curso> getCursos() {
+        return cursos;
+    }
 
+    public static CursoManager getInstance() {
+        if (instance == null) {
+            instance = new CursoManager();
+        }
+        return instance;
+    }
     public static double getSatisfaction(int id){
         for (Curso cu: cursos){
             if (cu.id == id){
@@ -54,15 +64,16 @@ public class CursoManager {
     public  boolean addCurso(Scanner sc, String fileName, String id){
             //si no se tiene el curso, se puede añadir
             
-            if(this.checkExistance(Integer.parseInt(id))== false){
-                
+            if(this.checkExistance(Integer.parseInt(id))){
+               return false;
+            }
                try{ 
                 FileReader outFile = new FileReader(fileName+".csv");
                 BufferedReader BufferLectura = new BufferedReader(outFile);
                 String line = null;
                 
                 while((line = BufferLectura.readLine()) != null){
-                    
+
                     // hay varios simbolos que oculta excel del csv, esto los quita
                     line = line.trim();
                     line = line.replaceAll(";+$", "");
@@ -77,11 +88,10 @@ public class CursoManager {
 
  
 
-                    String temp[] = line.split(",(?=(?:[^\"]\"[^\"]\")[^\"]$)");
+                    String temp[] = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
                     
                     if (temp[0].equals(id)){
-                        
-                        
+                        System.out.println("CSV ID: " + temp[0] + " | Buscando: " + id);
                      
 
                  /// ESTO DE ACA ES PARA VOLVER A PONER LO QUE SE QUITO
@@ -122,18 +132,20 @@ public class CursoManager {
                        
                        Curso cur = new Curso(idInt, title, url, rating, numRev, numPub, created, lastUpdDate, duration, instrId, image, posRev, negRev, neutRev);
                        this.cursos.add(cur);
+                       BufferLectura.close();
+                       return true;
                     }
            
                 }
                 BufferLectura.close();
-                return true; //si se pudo crear, regresa true
+                
                    
                 } catch (IOException ex) {
                    System.out.println(ex);
                 System.out.println("No se encontro archivo");
            
                 }
-            } 
+             
             return false; // si no, regresa false
                 
         }

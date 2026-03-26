@@ -1,5 +1,13 @@
 digraph AVL {
 node [shape=circle];
-513244 -> 1298780;
-513244 -> 1298780;
+rankdir=TB;
+2053219;
+nullL2053219 [shape=point];
+2053219 -> nullL2053219;
+2053219 -> 3047216;
+3047216;
+nullL3047216 [shape=point];
+3047216 -> nullL3047216;
+nullR3047216 [shape=point];
+3047216 -> nullR3047216;
 }

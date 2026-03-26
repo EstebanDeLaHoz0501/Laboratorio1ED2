@@ -5,6 +5,7 @@
 package Core.Arbol;
 
 
+import Core.CursoManager;
 import Core.Nodo;
 import java.util.ArrayList;
 import java.time.Instant;
@@ -13,10 +14,14 @@ import java.time.Instant;
  * @author Esteban
  */
 public class AVL {              //todos los metodos con "Aux" son metodos que no se ejecutan directamente,
-    private Nodo raiz;                  //sino por su version sin el "Aux"
+    private Nodo raiz;
+    private static AVL instance; //sino por su version sin el "Aux"
 
-    public AVL() {
-
+    public static AVL getInstance() {
+        if (instance == null) {
+            instance = new AVL();
+        }
+        return instance;
     }
         
     public static int alturaA(Nodo raiz){
@@ -49,29 +54,36 @@ public class AVL {              //todos los metodos con "Aux" son metodos que no
         porNivelesAux(queue);
     }
     
-    public Nodo balancear(Nodo raiz){
-        if(raiz == null){
-            return null;
+public Nodo balancear(Nodo raiz){
+
+    if(raiz == null) return null;
+
+    int fb = raiz.factorbalanceo();
+
+    // 🔵 Derecha pesada
+    if(fb > 1){
+        System.out.println("me");
+        if(raiz.getRight() != null && raiz.getRight().factorbalanceo() >= 0){
+            return Rotaciones.RSI(raiz); // RR
         }
-        raiz.setLeft(balancear(raiz.getLeft()));
-        raiz.setRight(balancear(raiz.getRight()));
-
-        
-        if(raiz.factorbalanceo()>1 && raiz.getRight().factorbalanceo()>=0)
-            return Rotaciones.RSI(raiz);
-        
-        if(raiz.factorbalanceo()<-1 && raiz.getLeft().factorbalanceo()<=0)
-            return Rotaciones.RSD(raiz);      
-        
-        if(raiz.factorbalanceo()>1 && raiz.getRight().factorbalanceo()<0)
-            return Rotaciones.RDDI(raiz);
-        
-        if(raiz.factorbalanceo()<-1 && raiz.getLeft().factorbalanceo()>0)
-            return Rotaciones.RDID(raiz);       
-        
-
-        return raiz;
+        if(raiz.getRight() != null && raiz.getRight().factorbalanceo() < 0){
+            return Rotaciones.RDDI(raiz); // RL
+        }
     }
+
+    // 🔵 Izquierda pesada
+    if(fb < -1){
+        System.out.println("you");
+        if(raiz.getLeft() != null && raiz.getLeft().factorbalanceo() <= 0){
+            return Rotaciones.RSD(raiz); // LL
+        }
+        if(raiz.getLeft() != null && raiz.getLeft().factorbalanceo() > 0){
+            return Rotaciones.RDID(raiz); // LR
+        }
+    }
+
+    return raiz;
+}
     
     //getters 
 

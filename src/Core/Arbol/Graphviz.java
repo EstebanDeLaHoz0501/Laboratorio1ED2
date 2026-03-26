@@ -54,9 +54,10 @@ public class Graphviz {
             
             writer.close();
 
-            Process p = Runtime.getRuntime().exec(
+            /*Process p = Runtime.getRuntime().exec(
                 "\"C:\\Program Files\\Graphviz\\bin\\dot.exe\" -Tpng arbol.dot -o arbol.png"
-            );
+            );*/
+            Process p = Runtime.getRuntime().exec(new String[]{"dot", "-Tpng", "arbol.dot", "-o", "arbol.png"});
             p.waitFor();
 
         } catch (Exception e) {

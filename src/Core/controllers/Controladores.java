@@ -32,11 +32,15 @@ public class Controladores {
     public Response insertarNodo(String idS) {
         try {            
             int id = Integer.parseInt(idS);
+            // verifica que no hayan negativos
+            if(Integer.parseInt(idS)< 0){
+                return new Response(false, "Inserte un ID positivo", Status.BAD_REQUEST);
+            }
             
             if(CM.addCurso(this.sc,"src/Core/dataset_courses_with_reviews",idS)){
                 if(tree.getRaiz()==null){
                     System.out.println("aqui");
-                    System.out.println(CM.getCursos());
+                    System.out.println(CM.getCursos()); //revisar
                     tree.setRaiz( OperacionesArbol.insertar1(this.tree, id));
                     Graphviz.exportarDOT(tree.getRaiz());
                 }else{
@@ -47,9 +51,39 @@ public class Controladores {
                     Graphviz.exportarDOT(tree.getRaiz());
                     
                 }
+                
             return new Response(true, "Insertado.", Status.CREATED);
             }
+            
             return new Response(true, "Ya existe.", Status.CREATED);
+        } catch (NumberFormatException e) {
+            return new Response(false, "Error: Verifique que los campos numéricos sean correctos.", Status.BAD_REQUEST);
+        } catch (Exception e) {
+            System.out.println(e);
+             return new Response(false, "Error inesperado.", Status.INTERNAL_SERVER_ERROR);
+        }
+    }
+    
+    public Response borrarNodo(String idS){
+        try {     
+            
+            int id = Integer.parseInt(idS);
+            // verifica que no hayan negativos
+            if(Integer.parseInt(idS)< 0){
+                return new Response(false, "Inserte un ID positivo", Status.BAD_REQUEST);
+            }
+            
+            //si se pudo borrar el curso:
+            if(CM.delCurso(idS)){
+                
+                //se borra el nodo, se dibuja el arbol
+                OperacionesArbol.delete(this.tree.getRaiz(), id, this.tree);
+                Graphviz.exportarDOT(tree.getRaiz());
+  
+            return new Response(true, "Borrado exitosamente.", Status.CREATED);
+            }
+            
+            return new Response(false, "El nodo no existe.", Status.BAD_REQUEST);
         } catch (NumberFormatException e) {
             return new Response(false, "Error: Verifique que los campos numéricos sean correctos.", Status.BAD_REQUEST);
         } catch (Exception e) {

@@ -158,6 +158,7 @@ public class OperacionesArbol {
         return searchAux(metrica, root, null, null);
     }
     
+    //solucionar
     public static boolean delete(Nodo root, double metrica, AVL tree){
         Nodo p = (Nodo) search(root, metrica).get(0);
         Nodo pad = (Nodo) search(root, metrica).get(1);
@@ -237,7 +238,7 @@ public class OperacionesArbol {
     
     //retorna la lista de nodos
     public static ArrayList<Nodo> getAfterDate(Nodo root, Instant date){
-        ArrayList<Nodo> afterDate = new ArrayList<Nodo>();
+        ArrayList<Nodo> afterDate = new ArrayList<>();
         getAfterDateAux(root, date, afterDate);
         
         return afterDate;
@@ -263,7 +264,7 @@ public class OperacionesArbol {
     
     //retorna la lista de nodos
     public static ArrayList<Nodo> classesInRange(Nodo root, int min, int max){
-        ArrayList<Nodo> nodos = new ArrayList<Nodo>();
+        ArrayList<Nodo> nodos = new ArrayList<>();
         classesInRangeAux(root, min, max, nodos);
         
         return nodos;

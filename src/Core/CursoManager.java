@@ -150,6 +150,19 @@ public class CursoManager {
                 
         }
     
+    public boolean delCurso(String id){
+        if(this.cursos != null){
+            for(Curso cur: cursos){
+                if( cur.id == Integer.parseInt(id)){
+                    //si se encuentra, se borra
+                    int index = cursos.indexOf(cur);
+                    cursos.remove(index);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
     //estatico pq solo hay un curso manager
     public static Curso getCurso(int id){
         for(Curso cur: cursos){

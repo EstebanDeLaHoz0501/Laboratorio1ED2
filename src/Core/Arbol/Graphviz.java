@@ -16,11 +16,16 @@ public class Graphviz {
     public static void generarDOT(Nodo nodo, FileWriter writer) throws IOException {
         if (nodo == null) return;
 
-        writer.write(nodo.getCurso().id + ";\n");
 
+        String label = "ID: " + nodo.getCurso().getId() + "\\n" + nodo.getCurso().getTitle() + "\\nRating: " + nodo.getCurso().getSatisfaction();
+
+        writer.write(nodo.getCurso().getId() + " [label=\"" + label + "\"];\n");
+        //writer.write(nodo.getCurso().id + ";\n");
+        
         // Hijo izquierdo
         if (nodo.getLeft() != null) {
-            writer.write(nodo.getCurso().id + " -> " + nodo.getLeft().getCurso().id + ";\n");
+            writer.write(nodo.getCurso().id+ " -> " + nodo.getLeft().getCurso().id + ";\n");
+            //writer.write(nodo.getCurso().id + " -> " + nodo.getLeft().getCurso().id + ";\n");
             generarDOT(nodo.getLeft(), writer);
         } else {
             // nodo invisible para forzar posición
@@ -31,7 +36,7 @@ public class Graphviz {
 
         // Hijo derecho
         if (nodo.getRight() != null) {
-            writer.write(nodo.getCurso().id + " -> " + nodo.getRight().getCurso().id + ";\n");
+            writer.write(nodo.getCurso().id  +  " -> " + nodo.getRight().getCurso().id + ";\n");
             generarDOT(nodo.getRight(), writer);
         } else {
             String nullRight = "nullR" + nodo.getCurso().id;

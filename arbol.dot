@@ -1,13 +1,21 @@
 digraph AVL {
 node [shape=circle];
 rankdir=TB;
-822444;
-822444 -> 1879018;
-1879018;
-nullL1879018 [shape=point];
-1879018 -> nullL1879018;
-nullR1879018 [shape=point];
-1879018 -> nullR1879018;
+1793828 [label="ID: 1793828\nDocker and Kubernetes: The Complete Guide\nRating: 4.17582129"];
+1793828 -> 1352468;
+1352468 [label="ID: 1352468\nMaster Microservices with Spring Boot and Spring Cloud\nRating: 4.0977841"];
+1352468 -> 947098;
+947098 [label="ID: 947098\nUnderstanding TypeScript\nRating: 3.87944085"];
+nullL947098 [shape=point];
+947098 -> nullL947098;
+nullR947098 [shape=point];
+947098 -> nullR947098;
+nullR1352468 [shape=point];
+1352468 -> nullR1352468;
+1793828 -> 822444;
+822444 [label="ID: 822444\nPython and Django Full Stack Web Developer Bootcamp\nRating: 4.3083143"];
+nullL822444 [shape=point];
+822444 -> nullL822444;
 nullR822444 [shape=point];
 822444 -> nullR822444;
 }

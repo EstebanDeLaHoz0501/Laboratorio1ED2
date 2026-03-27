@@ -647,21 +647,35 @@ public class interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_masPosButtonActionPerformed
 
     private void ranClasesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ranClasesButtonActionPerformed
-         //reinicia textarea
+         //listo
+        //reinicia textarea
         resultArea.setText(""); 
+        
+        
         ArrayList<String> clasesEnRango = new ArrayList<>();
-        int minVal = Integer.parseInt(minTF.getText());
-        int maxVal = Integer.parseInt(maxTF.getText());
+        Response response = controlador.clasesEnRango(minTF.getText(),maxTF.getText());
         
-        clasesEnRango = OperacionesArbol.classesInRange(tree.getRaiz(), minVal, maxVal);
-        
-        if(clasesEnRango.isEmpty()){
-             resultArea.append("No se encontraron nodos");
-         } else{
-             for(String id : clasesEnRango){
-             resultArea.append(id + "\n");
+        //si es exito:
+        if (response.isSuccess()){
+            try{
+                int minVal = Integer.parseInt(minTF.getText());
+                int maxVal = Integer.parseInt(maxTF.getText());
+                clasesEnRango = OperacionesArbol.classesInRange(tree.getRaiz(), minVal, maxVal);
+
+                if(clasesEnRango.isEmpty()){
+                     resultArea.append("No se encontraron nodos");
+                 } else{
+                     for(String id : clasesEnRango){
+                     resultArea.append(id + "\n");
+                    }
+                 }
+            } catch(NumberFormatException e){
             }
-         }
+             javax.swing.JOptionPane.showMessageDialog(this, response.getMessage());
+        }else{
+             javax.swing.JOptionPane.showMessageDialog(this, response.getMessage());
+        }
+        
     }//GEN-LAST:event_ranClasesButtonActionPerformed
 
     private void masPromedioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_masPromedioButtonActionPerformed

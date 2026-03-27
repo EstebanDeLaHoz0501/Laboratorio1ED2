@@ -10,6 +10,7 @@ import Core.Arbol.OperacionesArbol;
 import Core.CursoManager;
 import Core.controllers.utils.Response;
 import Core.controllers.utils.Status;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.ImageIcon;
@@ -85,10 +86,48 @@ public class Controladores {
             
             return new Response(false, "El nodo no existe.", Status.BAD_REQUEST);
         } catch (NumberFormatException e) {
+            
             return new Response(false, "Error: Verifique que los campos numéricos sean correctos.", Status.BAD_REQUEST);
         } catch (Exception e) {
+
+             return new Response(false, "Error inesperado.", Status.INTERNAL_SERVER_ERROR);
+        }
+    }
+    
+    public Response clasesEnRango(String minStr, String maxStr){
+        try{
+            int min = Integer.parseInt(minStr);
+            int max = Integer.parseInt(maxStr);
+
+            if(min < 0 || max < 0){
+                return new Response(false, "Inserte valores positivos", Status.BAD_REQUEST);
+            }
+        
+
+            return new Response(true, "Nodos encontrados exitosamente.", Status.CREATED);
+        
+        } catch (NumberFormatException e){
+            return new Response(false, "Error: Verifique que los campos numéricos sean correctos.", Status.BAD_REQUEST);
+        }catch (Exception e) {
             System.out.println(e);
              return new Response(false, "Error inesperado.", Status.INTERNAL_SERVER_ERROR);
         }
+        
+    }
+    
+    public Response isAfter(String date){
+        try{
+            
+            Instant i = null;
+            i = Instant.parse(date);
+            return new Response(true, "Fecha comparada exitosamente", Status.CREATED);
+            
+        }catch(NumberFormatException e){
+            return new Response(false, "Error: Verifique que el formato de la fecha sea correcto", Status.BAD_REQUEST);
+        }catch (Exception e) {
+
+             return new Response(false, "Error inesperado.", Status.INTERNAL_SERVER_ERROR);
+        }
+        
     }
 }

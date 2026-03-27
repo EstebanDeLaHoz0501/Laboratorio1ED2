@@ -120,12 +120,10 @@ public class Controladores {
             
             Instant i = null;
             i = Instant.parse(date);
+            
             return new Response(true, "Fecha comparada exitosamente", Status.CREATED);
             
-        }catch(NumberFormatException e){
-            return new Response(false, "Error: Verifique que el formato de la fecha sea correcto", Status.BAD_REQUEST);
         }catch (Exception e) {
-
              return new Response(false, "Error inesperado.", Status.INTERNAL_SERVER_ERROR);
         }
         

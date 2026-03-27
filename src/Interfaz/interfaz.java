@@ -259,30 +259,25 @@ public class interfaz extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(minTF, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(maxTF, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(66, 66, 66)
-                                .addComponent(ranClasesButton))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(instanteTF)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(creacionFechaButton)))
-                        .addGap(77, 77, 77))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(masPosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(masReseñasBox, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(masPromedioButton, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(masPosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(creacionFechaButton)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addComponent(masReseñasBox, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(masPromedioButton, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                            .addComponent(instanteTF, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap())
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addComponent(minTF, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(102, 102, 102)
+                            .addComponent(maxTF, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(74, 74, 74)
+                            .addComponent(ranClasesButton)))))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -409,7 +404,7 @@ public class interfaz extends javax.swing.JFrame {
                     .addGap(0, 772, Short.MAX_VALUE)))
         );
 
-        jPanel1.add(SideButtons, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 840));
+        jPanel1.add(SideButtons, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 840));
 
         MainTree.setBackground(new java.awt.Color(0, 0, 204));
         MainTree.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -607,26 +602,30 @@ public class interfaz extends javax.swing.JFrame {
         resultArea.setText(""); 
         
         String creacionStr = instanteTF.getText();
+        Response res = controlador.isAfter(creacionStr);
         
-        try{
+        if(res.isSuccess()){
+            try{
             //obtencion de ids
+                Instant creacion = null;
+                creacion = Instant.parse(creacionStr);
+                ArrayList<String> creadosDespues= new ArrayList<>();
+                creadosDespues = OperacionesArbol.getAfterDate(tree.getRaiz(), creacion);
 
-            Instant creacion = null;
-            creacion = Instant.parse(creacionStr);
-            ArrayList<String> creadosDespues= new ArrayList<>();
-            creadosDespues = OperacionesArbol.getAfterDate(tree.getRaiz(), creacion);
-            
-            //se ponen en el textarea
-            if(creadosDespues.isEmpty()){
-             resultArea.append("No se encontraron nodos");
-            } else{
-                for(String id :creadosDespues){
-                resultArea.append(id + "\n");
-               }
-         }
-        }catch(IllegalArgumentException e){
-            javax.swing.JOptionPane.showMessageDialog(this, "fecha invalida");
+                //se ponen en el textarea
+                if(creadosDespues.isEmpty()){
+                 resultArea.append("No se encontraron nodos");
+                } else{
+                    for(String id :creadosDespues){
+                        
+                    resultArea.append(id + "\n");
+                   }
+                }
+            }catch(IllegalArgumentException e){
+                javax.swing.JOptionPane.showMessageDialog(this, "fecha invalida");
+            }
         }
+        
     }//GEN-LAST:event_creacionFechaButtonActionPerformed
 
     private void masPosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_masPosButtonActionPerformed

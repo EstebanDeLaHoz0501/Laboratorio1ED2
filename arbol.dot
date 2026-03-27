@@ -1,13 +1,9 @@
 digraph AVL {
 node [shape=circle];
 rankdir=TB;
-1178124 [label="ID: 1178124\nComplete C# Unity Game Developer 3D\nRating: 4.2020918"];
-1178124 -> 1879018;
-1879018 [label="ID: 1879018\nNodeJS - The Complete Guide (MVC, REST APIs, GraphQL, Deno)\nRating: 4.14059456"];
-nullL1879018 [shape=point];
-1879018 -> nullL1879018;
-nullR1879018 [shape=point];
-1879018 -> nullR1879018;
-nullR1178124 [shape=point];
-1178124 -> nullR1178124;
+1535678 [label="ID: 1535678\nJava Programming for Complete Beginners\nRating: 4.386544549999999"];
+nullL1535678 [shape=point];
+1535678 -> nullL1535678;
+nullR1535678 [shape=point];
+1535678 -> nullR1535678;
 }

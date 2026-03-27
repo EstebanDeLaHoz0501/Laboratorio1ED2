@@ -25,7 +25,7 @@ public class CursoManager {
     public static ArrayList<Curso> cursos = new ArrayList<>();
     private static CursoManager instance;
 
-    public static ArrayList<Curso> getCursos() {
+    public ArrayList<Curso> getCursos() {
         return cursos;
     }
 
@@ -150,13 +150,30 @@ public class CursoManager {
                 
         }
     
-    public boolean delCurso(String id){
+    public boolean delCurso(String id, boolean quitar){
         if(this.cursos != null){
             for(Curso cur: cursos){
                 if( cur.id == Integer.parseInt(id)){
                     //si se encuentra, se borra
                     int index = cursos.indexOf(cur);
+                    if(quitar){
                     cursos.remove(index);
+                    }
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    public boolean delCursoMetrica(String metrica, boolean quitar){
+        if(this.cursos != null){
+            for(Curso cur: cursos){
+                if( cur.getSatisfaction() == Double.parseDouble(metrica)){
+                    //si se encuentra, se borra
+                    int index = cursos.indexOf(cur);
+                    if(quitar){
+                    cursos.remove(index);
+                    }
                     return true;
                 }
             }
@@ -164,7 +181,7 @@ public class CursoManager {
         return false;
     }
     //estatico pq solo hay un curso manager
-    public static Curso getCurso(int id){
+    public Curso getCurso(int id){
         for(Curso cur: cursos){
             if(cur.getId() == id){
                 return cur;
@@ -172,4 +189,5 @@ public class CursoManager {
         }
         return null;
     }
+    
 }

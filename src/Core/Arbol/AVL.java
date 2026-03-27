@@ -20,6 +20,7 @@ public class AVL {              //todos los metodos con "Aux" son metodos que no
     public static AVL getInstance() {
         if (instance == null) {
             instance = new AVL();
+
         }
         return instance;
     }
@@ -30,28 +31,32 @@ public class AVL {              //todos los metodos con "Aux" son metodos que no
         return 1+Math.max(alturaA(raiz.getLeft()), alturaA(raiz.getRight()));
     }
     
-    public void porNiveles(Nodo raiz){
-        if(raiz != null){
-            return;
+    public String porNiveles(Nodo raiz){
+        if(raiz == null){
+            return "El arbol está vacio";
         }
         ArrayList<Nodo> queue = new ArrayList<>();
+        
         queue.add(raiz);
-        porNivelesAux(queue);
+ 
+        return porNivelesAux(queue, "");
+        
     }
     
-    public void porNivelesAux(ArrayList<Nodo> queue){
+    public String porNivelesAux(ArrayList<Nodo> queue, String rec){
         if(queue.isEmpty())
-            return;
-        Nodo p = queue.removeFirst();
-        //cambien eso, que aparezca en la interfaz
-        //System.out.println(p.title);
+            return rec;
+        Nodo p = queue.remove(0);
+        
+        rec += p.getId() + ", ";
+        
         if(p.getLeft() != null){
             queue.add(p.getLeft());
         }
         if(p.getRight() != null){
             queue.add(p.getRight());
         }
-        porNivelesAux(queue);
+        return porNivelesAux(queue, rec);
     }
     
 public Nodo balancear(Nodo raiz){

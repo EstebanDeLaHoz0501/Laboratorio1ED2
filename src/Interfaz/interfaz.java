@@ -50,11 +50,11 @@ public class interfaz extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         SideButtons = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        EliminarIDTF = new javax.swing.JTextField();
         deleteButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
+        EliminarMetricaBT = new javax.swing.JButton();
+        EliminarMetricaTF = new javax.swing.JTextField();
         InsertarPanel = new javax.swing.JPanel();
         InsertarTF = new javax.swing.JTextField();
         InsertarBoton = new javax.swing.JButton();
@@ -75,29 +75,37 @@ public class interfaz extends javax.swing.JFrame {
         InsertarLabel = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jButton8 = new javax.swing.JButton();
+        BuscarID = new javax.swing.JButton();
+        BuscarMetrica = new javax.swing.JButton();
+        BuscarIDTF = new javax.swing.JTextField();
+        BuscarMetricaTF = new javax.swing.JTextField();
+        RecorridoNiveles = new javax.swing.JButton();
         MainTree = new javax.swing.JPanel();
         TitlePanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
+        jPanel4 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        resultArea = new javax.swing.JTextArea();
         TreeSite = new javax.swing.JScrollPane();
         bigtree = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        jToggleButton2 = new javax.swing.JToggleButton();
-        jToggleButton3 = new javax.swing.JToggleButton();
-        jToggleButton4 = new javax.swing.JToggleButton();
-        jToggleButton5 = new javax.swing.JToggleButton();
-        jToggleButton6 = new javax.swing.JToggleButton();
-        jPanel4 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        resultArea = new javax.swing.JTextArea();
+        InfoTF = new javax.swing.JTextField();
+        InfoCompleta = new javax.swing.JButton();
+        Nivel = new javax.swing.JButton();
+        FBalanceo = new javax.swing.JButton();
+        Padre = new javax.swing.JButton();
+        Abuelo = new javax.swing.JButton();
+        Tio = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        MetricaTF = new javax.swing.JTextField();
+        InfoCoMetrica = new javax.swing.JButton();
+        NivelMetrica = new javax.swing.JButton();
+        PadreM = new javax.swing.JButton();
+        AbueloM = new javax.swing.JButton();
+        FBalanceoMetrica = new javax.swing.JButton();
+        TioM = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -109,16 +117,31 @@ public class interfaz extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(102, 102, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jTextField1.setText("ID");
+        EliminarIDTF.setText("ID");
 
         deleteButton.setText("Aceptar");
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("Eliminar");
 
-        jButton5.setText("Aceptar");
+        EliminarMetricaBT.setText("Aceptar");
+        EliminarMetricaBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarMetricaBTActionPerformed(evt);
+            }
+        });
 
-        jTextField2.setText("Por metrica");
+        EliminarMetricaTF.setText("Por metrica");
+        EliminarMetricaTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarMetricaTFActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -132,11 +155,11 @@ public class interfaz extends javax.swing.JFrame {
                             .addComponent(deleteButton)
                             .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1))
+                        .addComponent(EliminarIDTF))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton5)
+                        .addComponent(EliminarMetricaBT)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2)))
+                        .addComponent(EliminarMetricaTF)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -146,11 +169,11 @@ public class interfaz extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(deleteButton)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(EliminarIDTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(EliminarMetricaBT)
+                    .addComponent(EliminarMetricaTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -180,7 +203,7 @@ public class interfaz extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(InsertarBoton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(InsertarTF, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
+                .addComponent(InsertarTF, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)
                 .addContainerGap())
         );
         InsertarPanelLayout.setVerticalGroup(
@@ -280,9 +303,11 @@ public class interfaz extends javax.swing.JFrame {
                             .addComponent(ranClasesButton)))))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(150, 150, 150)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -322,15 +347,40 @@ public class interfaz extends javax.swing.JFrame {
 
         jLabel7.setText("Buscar");
 
-        jButton6.setText("Aceptar");
+        BuscarID.setText("Aceptar");
+        BuscarID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscarIDActionPerformed(evt);
+            }
+        });
 
-        jButton7.setText("Aceptar");
+        BuscarMetrica.setText("Aceptar");
+        BuscarMetrica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscarMetricaActionPerformed(evt);
+            }
+        });
 
-        jTextField3.setText("ID");
+        BuscarIDTF.setText("ID");
+        BuscarIDTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscarIDTFActionPerformed(evt);
+            }
+        });
 
-        jTextField4.setText("Por metrica");
+        BuscarMetricaTF.setText("Por metrica");
+        BuscarMetricaTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscarMetricaTFActionPerformed(evt);
+            }
+        });
 
-        jButton8.setText("Recorrido por niveles");
+        RecorridoNiveles.setText("Recorrido por niveles");
+        RecorridoNiveles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RecorridoNivelesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -341,14 +391,14 @@ public class interfaz extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jButton6)
+                        .addComponent(BuscarID)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(BuscarIDTF, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jButton7)
+                        .addComponent(BuscarMetrica)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField4))
-                    .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(BuscarMetricaTF))
+                    .addComponent(RecorridoNiveles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
@@ -358,14 +408,14 @@ public class interfaz extends javax.swing.JFrame {
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton6)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BuscarID)
+                    .addComponent(BuscarIDTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton7)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BuscarMetrica)
+                    .addComponent(BuscarMetricaTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton8)
+                .addComponent(RecorridoNiveles)
                 .addContainerGap())
         );
 
@@ -373,18 +423,22 @@ public class interfaz extends javax.swing.JFrame {
         SideButtons.setLayout(SideButtonsLayout);
         SideButtonsLayout.setHorizontalGroup(
             SideButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(SideButtonsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(SideButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(SideButtonsLayout.createSequentialGroup()
-                        .addComponent(InsertarLabel)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SideButtonsLayout.createSequentialGroup()
+                .addGroup(SideButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, SideButtonsLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(SideButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(SideButtonsLayout.createSequentialGroup()
+                                .addComponent(InsertarLabel)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(SideButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(InsertarPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(SideButtonsLayout.createSequentialGroup()
+                    .addComponent(InsertarPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         SideButtonsLayout.setVerticalGroup(
             SideButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -397,11 +451,11 @@ public class interfaz extends javax.swing.JFrame {
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(149, Short.MAX_VALUE))
             .addGroup(SideButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(SideButtonsLayout.createSequentialGroup()
                     .addComponent(InsertarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 772, Short.MAX_VALUE)))
+                    .addGap(0, 770, Short.MAX_VALUE)))
         );
 
         jPanel1.add(SideButtons, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 840));
@@ -420,9 +474,9 @@ public class interfaz extends javax.swing.JFrame {
         TitlePanelLayout.setHorizontalGroup(
             TitlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TitlePanelLayout.createSequentialGroup()
-                .addContainerGap(514, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(173, 173, 173))
+                .addGap(316, 316, 316))
         );
         TitlePanelLayout.setVerticalGroup(
             TitlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -432,75 +486,6 @@ public class interfaz extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        bigtree.setBackground(new java.awt.Color(102, 102, 255));
-        bigtree.setText("jLabel9");
-        TreeSite.setViewportView(bigtree);
-
-        jTabbedPane2.addTab("Arbol", TreeSite);
-
-        jLabel9.setText("Buscar informacion del nodo ");
-
-        jTextField8.setText("ID");
-
-        jToggleButton1.setText("Info completa");
-
-        jToggleButton2.setText("Nivel");
-
-        jToggleButton3.setText("Factor de balanceo");
-
-        jToggleButton4.setText("Padre");
-
-        jToggleButton5.setText("Abuelo");
-
-        jToggleButton6.setText("Tio");
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jToggleButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jToggleButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jToggleButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jToggleButton3))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(51, Short.MAX_VALUE))
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jToggleButton1)
-                    .addComponent(jToggleButton2)
-                    .addComponent(jToggleButton3))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jToggleButton4)
-                    .addComponent(jToggleButton5)
-                    .addComponent(jToggleButton6))
-                .addContainerGap(266, Short.MAX_VALUE))
-        );
-
-        jTabbedPane2.addTab("Informacion del nodo", jPanel6);
-
         resultArea.setColumns(20);
         resultArea.setRows(5);
         jScrollPane2.setViewportView(resultArea);
@@ -509,12 +494,12 @@ public class interfaz extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 560, Short.MAX_VALUE)
+            .addGap(0, 875, Short.MAX_VALUE)
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                    .addContainerGap(31, Short.MAX_VALUE)
+                    .addContainerGap(189, Short.MAX_VALUE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(37, Short.MAX_VALUE)))
+                    .addContainerGap(194, Short.MAX_VALUE)))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -528,6 +513,192 @@ public class interfaz extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("resultados ", jPanel4);
 
+        bigtree.setBackground(new java.awt.Color(102, 102, 255));
+        bigtree.setText("Arbol");
+        TreeSite.setViewportView(bigtree);
+
+        jTabbedPane2.addTab("Arbol", TreeSite);
+
+        jLabel9.setText("Buscar informacion del nodo ");
+
+        InfoTF.setText("ID");
+        InfoTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InfoTFActionPerformed(evt);
+            }
+        });
+
+        InfoCompleta.setText("Info Completa");
+        InfoCompleta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InfoCompletaActionPerformed(evt);
+            }
+        });
+
+        Nivel.setText("Nivel");
+        Nivel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NivelActionPerformed(evt);
+            }
+        });
+
+        FBalanceo.setText("Factor de Balanceo");
+        FBalanceo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FBalanceoActionPerformed(evt);
+            }
+        });
+
+        Padre.setText("Padre");
+        Padre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PadreActionPerformed(evt);
+            }
+        });
+
+        Abuelo.setText("Abuelo");
+        Abuelo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AbueloActionPerformed(evt);
+            }
+        });
+
+        Tio.setText("Tio");
+        Tio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TioActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setText("Buscar informacion del nodo ");
+
+        MetricaTF.setText("Metrica");
+
+        InfoCoMetrica.setText("Info Completa");
+        InfoCoMetrica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InfoCoMetricaActionPerformed(evt);
+            }
+        });
+
+        NivelMetrica.setText("Nivel");
+        NivelMetrica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NivelMetricaActionPerformed(evt);
+            }
+        });
+
+        PadreM.setText("Padre");
+        PadreM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PadreMActionPerformed(evt);
+            }
+        });
+
+        AbueloM.setText("Abuelo");
+        AbueloM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AbueloMActionPerformed(evt);
+            }
+        });
+
+        FBalanceoMetrica.setText("Factor de Balanceo");
+        FBalanceoMetrica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FBalanceoMetricaActionPerformed(evt);
+            }
+        });
+
+        TioM.setText("Tio");
+        TioM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TioMActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(54, 54, 54)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(InfoCompleta, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                    .addComponent(Padre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Nivel, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Abuelo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(FBalanceo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Tio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(496, 496, 496))
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(InfoTF, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(MetricaTF, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(InfoCoMetrica, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
+                            .addComponent(PadreM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(9, 9, 9)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(AbueloM, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
+                            .addComponent(NivelMetrica, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TioM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(FBalanceoMetrica, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(496, 496, 496))))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(InfoTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(InfoCompleta)
+                    .addComponent(FBalanceo)
+                    .addComponent(Nivel))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Padre)
+                    .addComponent(Abuelo)
+                    .addComponent(Tio))
+                .addGap(50, 50, 50)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(MetricaTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(InfoCoMetrica)
+                    .addComponent(NivelMetrica)
+                    .addComponent(FBalanceoMetrica))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TioM)
+                    .addComponent(AbueloM)
+                    .addComponent(PadreM))
+                .addContainerGap(110, Short.MAX_VALUE))
+        );
+
+        jTabbedPane2.addTab("Informacion del nodo", jPanel6);
+
         javax.swing.GroupLayout MainTreeLayout = new javax.swing.GroupLayout(MainTree);
         MainTree.setLayout(MainTreeLayout);
         MainTreeLayout.setHorizontalGroup(
@@ -536,18 +707,18 @@ public class interfaz extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(TitlePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(MainTreeLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MainTreeLayout.createSequentialGroup()
+                .addContainerGap(46, Short.MAX_VALUE)
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 875, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17))
         );
         MainTreeLayout.setVerticalGroup(
             MainTreeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MainTreeLayout.createSequentialGroup()
                 .addComponent(TitlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(245, Short.MAX_VALUE))
+                .addContainerGap(251, Short.MAX_VALUE))
         );
 
         jPanel1.add(MainTree, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 940, 840));
@@ -605,7 +776,7 @@ public class interfaz extends javax.swing.JFrame {
         Response res = controlador.isAfter(creacionStr);
         
         if(res.isSuccess()){
-            try{
+
             //obtencion de ids
                 Instant creacion = null;
                 creacion = Instant.parse(creacionStr);
@@ -621,9 +792,11 @@ public class interfaz extends javax.swing.JFrame {
                     resultArea.append(id + "\n");
                    }
                 }
-            }catch(IllegalArgumentException e){
+
+                javax.swing.JOptionPane.showMessageDialog(this, "exito");
+
+        }else{
                 javax.swing.JOptionPane.showMessageDialog(this, "fecha invalida");
-            }
         }
         
     }//GEN-LAST:event_creacionFechaButtonActionPerformed
@@ -709,6 +882,236 @@ public class interfaz extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_instanteTFActionPerformed
 
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+        String idTexto = EliminarIDTF.getText();
+        Response response = controlador.borrarNodo(idTexto);
+        if(response.isSuccess()){
+        try {
+            BufferedImage img = ImageIO.read(new File("arbol.png"));
+            bigtree.setIcon(new ImageIcon(img));
+
+            bigtree.revalidate();
+            bigtree.repaint();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        javax.swing.JOptionPane.showMessageDialog(this, response.getMessage());
+        }else{
+            javax.swing.JOptionPane.showMessageDialog(this, response.getMessage());
+        }
+    }//GEN-LAST:event_deleteButtonActionPerformed
+
+    private void EliminarMetricaBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarMetricaBTActionPerformed
+        String metrica = EliminarMetricaTF.getText();
+        Response response = controlador.borrarNodoMetrica(metrica);
+        if(response.isSuccess()){
+        try {
+            BufferedImage img = ImageIO.read(new File("arbol.png"));
+            bigtree.setIcon(new ImageIcon(img));
+
+            bigtree.revalidate();
+            bigtree.repaint();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        javax.swing.JOptionPane.showMessageDialog(this, response.getMessage());
+        }else{
+            javax.swing.JOptionPane.showMessageDialog(this, response.getMessage());
+        }
+    }//GEN-LAST:event_EliminarMetricaBTActionPerformed
+
+    private void EliminarMetricaTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarMetricaTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EliminarMetricaTFActionPerformed
+
+    private void RecorridoNivelesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RecorridoNivelesActionPerformed
+        javax.swing.JOptionPane.showMessageDialog(this, this.tree.porNiveles(this.tree.getRaiz()));
+    }//GEN-LAST:event_RecorridoNivelesActionPerformed
+
+    private void BuscarIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarIDActionPerformed
+        String idTexto = BuscarIDTF.getText();
+        Response response = controlador.BuscarID(idTexto);
+        if(response.isSuccess()){
+        javax.swing.JOptionPane.showMessageDialog(this, (String) response.getObject());
+        }else{
+            javax.swing.JOptionPane.showMessageDialog(this, response.getMessage());
+        }
+    }//GEN-LAST:event_BuscarIDActionPerformed
+
+    private void InfoCompletaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InfoCompletaActionPerformed
+        String idTexto = InfoTF.getText();
+        Response response = controlador.InfoCompleta(idTexto);
+        if(response.isSuccess()){
+        javax.swing.JOptionPane.showMessageDialog(this, (String) response.getObject());
+        }else{
+            javax.swing.JOptionPane.showMessageDialog(this, response.getMessage());
+        }
+    }//GEN-LAST:event_InfoCompletaActionPerformed
+
+    private void InfoTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InfoTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_InfoTFActionPerformed
+
+    private void NivelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NivelActionPerformed
+        String idTexto = InfoTF.getText();
+        Response response = controlador.NivelNodo(idTexto);
+        if(response.isSuccess()){
+        javax.swing.JOptionPane.showMessageDialog(this, (String) response.getObject());
+        }else{
+            javax.swing.JOptionPane.showMessageDialog(this, response.getMessage());
+        }
+    }//GEN-LAST:event_NivelActionPerformed
+
+    private void FBalanceoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FBalanceoActionPerformed
+        String idTexto = InfoTF.getText();
+        Response response = controlador.FactBalance(idTexto);
+        if(response.isSuccess()){
+        javax.swing.JOptionPane.showMessageDialog(this, (String) response.getObject());
+        }else{
+            javax.swing.JOptionPane.showMessageDialog(this, response.getMessage());
+        }
+    }//GEN-LAST:event_FBalanceoActionPerformed
+
+    private void PadreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PadreActionPerformed
+        String idTexto = InfoTF.getText();
+        Response response = controlador.Padre(idTexto);
+        if(response.isSuccess()){
+            if(response.getObject()!= null){
+                javax.swing.JOptionPane.showMessageDialog(this, (String) response.getObject());
+            }else{
+                javax.swing.JOptionPane.showMessageDialog(this, "Este nodo no tiene padre");
+            }
+        
+        }else{
+            javax.swing.JOptionPane.showMessageDialog(this, response.getMessage());
+        }
+    }//GEN-LAST:event_PadreActionPerformed
+
+    private void AbueloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AbueloActionPerformed
+        String idTexto = InfoTF.getText();
+        Response response = controlador.Abuelo(idTexto);
+        if(response.isSuccess()){
+            if(response.getObject()!= null){
+                javax.swing.JOptionPane.showMessageDialog(this, (String) response.getObject());
+            }else{
+                javax.swing.JOptionPane.showMessageDialog(this, "Este nodo no tiene abuelo");
+            }
+        
+        }else{
+            javax.swing.JOptionPane.showMessageDialog(this, response.getMessage());
+        }
+    }//GEN-LAST:event_AbueloActionPerformed
+
+    private void TioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TioActionPerformed
+        String idTexto = InfoTF.getText();
+        Response response = controlador.Tio(idTexto);
+        if(response.isSuccess()){
+            if(response.getObject()!= null){
+                javax.swing.JOptionPane.showMessageDialog(this, (String) response.getObject());
+            }else{
+                javax.swing.JOptionPane.showMessageDialog(this, "Este nodo no tiene tio");
+            }
+        
+        }else{
+            javax.swing.JOptionPane.showMessageDialog(this, response.getMessage());
+        }
+    }//GEN-LAST:event_TioActionPerformed
+
+    private void AbueloMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AbueloMActionPerformed
+        String idTexto = MetricaTF.getText();
+        Response response = controlador.AbueloMetrica(idTexto);
+        if(response.isSuccess()){
+            if(response.getObject()!= null){
+                javax.swing.JOptionPane.showMessageDialog(this, (String) response.getObject());
+            }else{
+                javax.swing.JOptionPane.showMessageDialog(this, "Este nodo no tiene abuelo");
+            }
+        
+        }else{
+            javax.swing.JOptionPane.showMessageDialog(this, response.getMessage());
+        }
+    }//GEN-LAST:event_AbueloMActionPerformed
+
+    private void InfoCoMetricaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InfoCoMetricaActionPerformed
+        String idTexto = MetricaTF.getText();
+        Response response = controlador.InfoCompletaMetrica(idTexto);
+        if(response.isSuccess()){
+        javax.swing.JOptionPane.showMessageDialog(this, (String) response.getObject());
+        }else{
+            javax.swing.JOptionPane.showMessageDialog(this, response.getMessage());
+        }
+    }//GEN-LAST:event_InfoCoMetricaActionPerformed
+
+    private void NivelMetricaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NivelMetricaActionPerformed
+        String idTexto = MetricaTF.getText();
+        Response response = controlador.NivelMetrica(idTexto);
+        if(response.isSuccess()){
+        javax.swing.JOptionPane.showMessageDialog(this, (String) response.getObject());
+        }else{
+            javax.swing.JOptionPane.showMessageDialog(this, response.getMessage());
+        }
+    }//GEN-LAST:event_NivelMetricaActionPerformed
+
+    private void FBalanceoMetricaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FBalanceoMetricaActionPerformed
+        String idTexto = MetricaTF.getText();
+        Response response = controlador.FBalanceoMetrica(idTexto);
+        if(response.isSuccess()){
+        javax.swing.JOptionPane.showMessageDialog(this, (String) response.getObject());
+        }else{
+            javax.swing.JOptionPane.showMessageDialog(this, response.getMessage());
+        }
+    }//GEN-LAST:event_FBalanceoMetricaActionPerformed
+
+    private void PadreMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PadreMActionPerformed
+        String idTexto = MetricaTF.getText();
+        Response response = controlador.PadreMetrica(idTexto);
+        if(response.isSuccess()){
+            if(response.getObject()!= null){
+                javax.swing.JOptionPane.showMessageDialog(this, (String) response.getObject());
+            }else{
+                javax.swing.JOptionPane.showMessageDialog(this, "Este nodo no tiene padre");
+            }
+        
+        }else{
+            javax.swing.JOptionPane.showMessageDialog(this, response.getMessage());
+        }
+    }//GEN-LAST:event_PadreMActionPerformed
+
+    private void TioMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TioMActionPerformed
+        String idTexto = MetricaTF.getText();
+        Response response = controlador.TioMetrica(idTexto);
+        if(response.isSuccess()){
+            if(response.getObject()!= null){
+                javax.swing.JOptionPane.showMessageDialog(this, (String) response.getObject());
+            }else{
+                javax.swing.JOptionPane.showMessageDialog(this, "Este nodo no tiene tio");
+            }
+        
+        }else{
+            javax.swing.JOptionPane.showMessageDialog(this, response.getMessage());
+        }
+    }//GEN-LAST:event_TioMActionPerformed
+
+    private void BuscarIDTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarIDTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BuscarIDTFActionPerformed
+
+    private void BuscarMetricaTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarMetricaTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BuscarMetricaTFActionPerformed
+
+    private void BuscarMetricaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarMetricaActionPerformed
+        String idTexto = BuscarMetricaTF.getText();
+        Response response = controlador.BuscarMetrica(idTexto);
+        if(response.isSuccess()){
+        javax.swing.JOptionPane.showMessageDialog(this, (String) response.getObject());
+        }else{
+            javax.swing.JOptionPane.showMessageDialog(this, response.getMessage());
+        }
+    }//GEN-LAST:event_BuscarMetricaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -746,23 +1149,42 @@ public class interfaz extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Abuelo;
+    private javax.swing.JButton AbueloM;
+    private javax.swing.JButton BuscarID;
+    private javax.swing.JTextField BuscarIDTF;
+    private javax.swing.JButton BuscarMetrica;
+    private javax.swing.JTextField BuscarMetricaTF;
+    private javax.swing.JTextField EliminarIDTF;
+    private javax.swing.JButton EliminarMetricaBT;
+    private javax.swing.JTextField EliminarMetricaTF;
+    private javax.swing.JButton FBalanceo;
+    private javax.swing.JButton FBalanceoMetrica;
+    private javax.swing.JButton InfoCoMetrica;
+    private javax.swing.JButton InfoCompleta;
+    private javax.swing.JTextField InfoTF;
     private javax.swing.JButton InsertarBoton;
     private javax.swing.JLabel InsertarLabel;
     private javax.swing.JPanel InsertarPanel;
     private javax.swing.JTextField InsertarTF;
     private javax.swing.JPanel MainTree;
+    private javax.swing.JTextField MetricaTF;
+    private javax.swing.JButton Nivel;
+    private javax.swing.JButton NivelMetrica;
+    private javax.swing.JButton Padre;
+    private javax.swing.JButton PadreM;
+    private javax.swing.JButton RecorridoNiveles;
     private javax.swing.JPanel SideButtons;
+    private javax.swing.JButton Tio;
+    private javax.swing.JButton TioM;
     private javax.swing.JPanel TitlePanel;
     private javax.swing.JScrollPane TreeSite;
     private javax.swing.JLabel bigtree;
     private javax.swing.JButton creacionFechaButton;
     private javax.swing.JButton deleteButton;
     private javax.swing.JTextField instanteTF;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -779,17 +1201,6 @@ public class interfaz extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JToggleButton jToggleButton2;
-    private javax.swing.JToggleButton jToggleButton3;
-    private javax.swing.JToggleButton jToggleButton4;
-    private javax.swing.JToggleButton jToggleButton5;
-    private javax.swing.JToggleButton jToggleButton6;
     private javax.swing.JButton masPosButton;
     private javax.swing.JButton masPromedioButton;
     private javax.swing.JComboBox<String> masReseñasBox;

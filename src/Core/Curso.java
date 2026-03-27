@@ -45,9 +45,9 @@ public class Curso {
         this.positive_reviews = positive_reviews;
         this.negative_reviews = negative_reviews;
         this.neutral_reviews = neutral_reviews;
-        
-        this.satisfaction = rating*0.7+((5*positive_reviews+3*neutral_reviews+negative_reviews)/(num_reviews))*0.3;
-        
+        double satis = Math.round((rating*0.7+((5*positive_reviews+3*neutral_reviews+negative_reviews)/(num_reviews))*0.3)*100000);
+        this.satisfaction = (satis/100000);
+        System.out.println(satis);
         
     }
 
@@ -110,7 +110,27 @@ public class Curso {
     public double getSatisfaction() {
         return satisfaction;
     }
-    
+
+    public String informacion() {
+        String info  = "===== CURSO =====\n" +
+                "ID: " + id + "\n" +
+                "Título: " + title + "\n" +
+                "URL: " + url + "\n" +
+                "Rating: " + rating + "\n" +
+                "Número de reviews: " + num_reviews + "\n" +
+                "Número de lecciones: " + num_published_lectures + "\n" +
+                "Fecha de creación: " + created + "\n" +
+                "Última actualización: " + last_update_date + "\n" +
+                "Duración: " + duration + "\n" +
+                "Instructor ID: " + instructors_id + "\n" +
+                "Imagen: " + image + "\n" +
+                "Reviews positivas: " + positive_reviews + "\n" +
+                "Reviews negativas: " + negative_reviews + "\n" +
+                "Reviews neutrales: " + neutral_reviews + "\n" +
+                "Satisfacción: " + satisfaction + "\n" +
+                "=================\n";
+        return info;
+    }
     
     
 }

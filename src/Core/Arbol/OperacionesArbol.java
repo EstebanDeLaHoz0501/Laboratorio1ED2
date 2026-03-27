@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class OperacionesArbol {
     //METODOS POR ID
     public static Nodo insertar1(AVL tree, int id){
-        return new Nodo(CursoManager.getCurso(id));
+        return new Nodo(CursoManager.getInstance().getCurso(id));
     }
     
     public static Nodo insertar(Nodo raiz, int id, AVL tree){
@@ -29,7 +29,7 @@ public class OperacionesArbol {
     public static Nodo insertarAux(Nodo raiz, int id, AVL tree){
         double metrica = CursoManager.getSatisfaction(id);
         if(raiz== null){
-            return new Nodo(CursoManager.getCurso(id));
+            return new Nodo(CursoManager.getInstance().getCurso(id));
         }
         if(raiz.getMetrica() < metrica){
             raiz.setRight(insertarAux(raiz.getRight(), id, tree));
@@ -43,13 +43,17 @@ public class OperacionesArbol {
     }
     
     public static ArrayList<Nodo> search(Nodo root, int id){
-        double metrica = CursoManager.getSatisfaction(id);
+        System.out.println("a search entró "+root);
+        double metrica = CursoManager.getInstance().getCurso(id).getSatisfaction();
         return searchAux(metrica, root, null, null);
     }
     
     public static ArrayList<Nodo> searchAux(double metrica, Nodo p, Nodo pad, Nodo abue){
+        System.out.println("a search aux entró "+p);
+        System.out.println("la metrica a buscar es: "+metrica+" Y LA DE P ES "+p.getMetrica());
         ArrayList<Nodo> lista = new ArrayList<>();
         if(p==null){
+            System.out.println("p es null");
             lista.add(null);               
             lista.add(pad);
             lista.add(abue);
@@ -57,11 +61,13 @@ public class OperacionesArbol {
             return lista;
         }
         if(p.getMetrica()==metrica){
+            System.out.println("p es "+p);
             lista.add(p);
             lista.add(pad);
             lista.add(abue);
             Nodo tio = null;
             if(abue != null){
+                System.out.println("abue no es null");
                 if(abue.getLeft()==pad){
                     tio = abue.getRight();
                 }else{
@@ -69,8 +75,10 @@ public class OperacionesArbol {
                 }
             }
             lista.add(tio);
+            System.out.println("retorname");
             return lista;
         }
+        System.out.println("queeee");
         if(p.getMetrica() >metrica){
             return searchAux(metrica, p.getLeft(), p, pad);
         }else{
@@ -78,65 +86,89 @@ public class OperacionesArbol {
         }
     }
     
-    public static boolean delete(Nodo root, int id, AVL tree){
-        Nodo p = (Nodo) search(root, id).get(0);
-        Nodo pad = (Nodo) search(root, id).get(1);
-        if(p!=null){
-            if(p.getLeft() == null & p.getRight() == null){
-                if(pad.getLeft()==p){
-                    pad.setLeft(null);
-                    //pad.left=null;
-                }else{
-                    pad.setRight(null);
-                }
-            }else if(p.getLeft()== null & p.getRight() != null){
-                if(pad.getLeft()==p){
-                    pad.setLeft(p.getRight());
-                    //pad.left=p.right;
-                }else{
-                    
-                    pad.setRight(p.getRight());
-                    //pad.right=p.right;
-                }
-            }else if(p.getLeft()!= null & p.getRight() == null){
-                if(pad.getLeft()==p){
-                    pad.setLeft(p.getLeft());
-                    //pad.left=p.left;
-                }else{
-                    pad.setRight(p.getLeft());
-                    //pad.right=p.left;
-                }
-            }else{
-                Nodo psus = (Nodo) sus(p).get(0);
-                Nodo padsus = (Nodo) sus(p).get(1);
-                Nodo phijo = (Nodo) sus(p).get(2);
+public static Nodo delete(Nodo root, int id, AVL tree){
+    ArrayList<Nodo> res = search(root, id);
+    Nodo p = res.get(0);
+    Nodo pad = res.get(1);
+
+    if(p != null){
+        if(pad == null){
+            if(p.getLeft() == null && p.getRight() == null){
+                return null;
+            }
+            else if(p.getLeft() == null){
+                return p.getRight();
+            }
+            else if(p.getRight() == null){
+                return p.getLeft();
+            }
+            else{
+                ArrayList<Nodo> s = sus(p);
+                Nodo psus = s.get(0);
+                Nodo padsus = s.get(1);
+                Nodo phijo = s.get(2);
+
+                p.setCurso(psus.getCurso());
+
                 if(padsus == p){
-                    p.setMetrica(psus.getMetrica());
-                    //p.metrica = psus.metrica;
-                    
                     padsus.setRight(psus.getRight());
-                    //padsus.right = psus.right;
                 }else{
                     if(phijo == null){
-                    p.setMetrica(psus.getMetrica());
-                    //p.metrica = psus.metrica;
-                    
-                    padsus.setLeft(null);
-                    //padsus.left = null;
+                        padsus.setLeft(null);
                     }else{
-                        p.setMetrica(psus.getMetrica());
-                        //p.metrica = psus.metrica;
-                        
                         padsus.setLeft(phijo);
-                        //padsus.left = phijo;
                     }
                 }
+
+                return tree.balancear(root);
             }
-            tree.balancear(root);
-            return true;
         }
-        return false;
+
+        if(p.getLeft() == null && p.getRight() == null){
+            if(pad.getLeft() == p){
+                pad.setLeft(null);
+            }else{
+                pad.setRight(null);
+            }
+
+        }else if(p.getLeft() == null && p.getRight() != null){
+            if(pad.getLeft() == p){
+                pad.setLeft(p.getRight());
+            }else{
+                pad.setRight(p.getRight());
+            }
+
+        }else if(p.getLeft() != null && p.getRight() == null){
+            if(pad.getLeft() == p){
+                pad.setLeft(p.getLeft());
+            }else{
+                pad.setRight(p.getLeft());
+            }
+
+        }else{
+            ArrayList<Nodo> s = sus(p);
+            Nodo psus = s.get(0);
+            Nodo padsus = s.get(1);
+            Nodo phijo = s.get(2);
+
+            p.setCurso(psus.getCurso());
+
+            if(padsus == p){
+                padsus.setRight(psus.getRight());
+            }else{
+                if(phijo == null){
+                    padsus.setLeft(null);
+                }else{
+                    padsus.setLeft(phijo);
+                }
+            }
+        }
+   
+        return tree.balancear(root);
     }
+
+    return tree.balancear(root);
+}
     
     //que es sus? preguntale a esteban
     public static ArrayList sus(Nodo node){
@@ -147,8 +179,8 @@ public class OperacionesArbol {
             p = p.getLeft();
             pad = p;
         }
-        lista.add(pad);
         lista.add(p);
+        lista.add(pad);
         lista.add(p.getRight());
         return lista;
     }
@@ -159,62 +191,88 @@ public class OperacionesArbol {
     }
     
     //solucionar
-    public static boolean delete(Nodo root, double metrica, AVL tree){
-        Nodo p = (Nodo) search(root, metrica).get(0);
-        Nodo pad = (Nodo) search(root, metrica).get(1);
-        if(p!=null){
-            if(p.getLeft() == null & p.getRight() == null){
-                if(pad.getLeft()==p){
-                    
+    public static Nodo delete(Nodo root, Double metrica, AVL tree){
+        ArrayList<Nodo> res = search(root, metrica);
+        Nodo p = res.get(0);
+        Nodo pad = res.get(1);
+
+        if(p != null){
+            if(pad == null){
+                if(p.getLeft() == null && p.getRight() == null){
+                    return null;
+                }
+                else if(p.getLeft() == null){
+                    return p.getRight();
+                }
+                else if(p.getRight() == null){
+                    return p.getLeft();
+                }
+                else{
+                    ArrayList<Nodo> s = sus(p);
+                    Nodo psus = s.get(0);
+                    Nodo padsus = s.get(1);
+                    Nodo phijo = s.get(2);
+
+                    p.setCurso(psus.getCurso());
+
+                    if(padsus == p){
+                        padsus.setRight(psus.getRight());
+                    }else{
+                        if(phijo == null){
+                            padsus.setLeft(null);
+                        }else{
+                            padsus.setLeft(phijo);
+                        }
+                    }
+
+                    return tree.balancear(root);
+                }
+            }
+
+            if(p.getLeft() == null && p.getRight() == null){
+                if(pad.getLeft() == p){
                     pad.setLeft(null);
                 }else{
                     pad.setRight(null);
-                    
                 }
-            }else if(p.getLeft()== null & p.getRight() != null){
-                if(pad.getLeft()==p){
+
+            }else if(p.getLeft() == null && p.getRight() != null){
+                if(pad.getLeft() == p){
                     pad.setLeft(p.getRight());
-                    //pad.left=p.right;
                 }else{
                     pad.setRight(p.getRight());
-                    //pad.right=p.right;
                 }
-            }else if(p.getLeft()!= null & p.getRight() == null){
-                if(pad.getLeft()==p){
+
+            }else if(p.getLeft() != null && p.getRight() == null){
+                if(pad.getLeft() == p){
                     pad.setLeft(p.getLeft());
-                    //pad.left=p.left;
                 }else{
                     pad.setRight(p.getLeft());
-                    //pad.right=p.left;
                 }
+
             }else{
-                Nodo psus = (Nodo) sus(p).get(0);
-                Nodo padsus = (Nodo) sus(p).get(1);
-                Nodo phijo = (Nodo) sus(p).get(2);
+                ArrayList<Nodo> s = sus(p);
+                Nodo psus = s.get(0);
+                Nodo padsus = s.get(1);
+                Nodo phijo = s.get(2);
+
+                p.setCurso(psus.getCurso());
+
                 if(padsus == p){
-                    p.setMetrica(psus.getMetrica());
-                    //p.metrica = psus.metrica;
                     padsus.setRight(psus.getRight());
-                    //padsus.right = psus.right;
                 }else{
                     if(phijo == null){
-                    p.setMetrica(psus.getMetrica());
-                    //p.metrica = psus.metrica;
-                    padsus.setLeft(null);
-                    //padsus.left = null;
+                        padsus.setLeft(null);
                     }else{
-                        p.setMetrica(psus.getMetrica());
-                        //p.metrica = psus.metrica;
-                        
                         padsus.setLeft(phijo);
-                        //padsus.left = phijo;
                     }
                 }
             }
-            tree.balancear(root);
-            return true;
+
+            return tree.balancear(root);
         }
-        return false;
+
+        return tree.balancear(root);
     }
     
     
@@ -316,7 +374,8 @@ public class OperacionesArbol {
    public static void posHigherThanAvgAux(Nodo root, AVL arbol, ArrayList<String> nodos){
         if(root == null) return;
         double avg = promedioRatings(arbol);
-        
+        System.out.println("soy avg"+avg);
+        System.out.println("soy positive" + root.getCurso().getPositive_reviews());
         if(root.getCurso().getPositive_reviews() <= avg){
             return;
         }else{

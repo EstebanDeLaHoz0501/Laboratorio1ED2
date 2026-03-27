@@ -27,7 +27,7 @@ public class Nodo {
         this.id = curso.getId();
         
         this.title = CursoManager.getTitle(id);
-        this.metrica = CursoManager.getSatisfaction(id);
+        this.metrica = curso.getSatisfaction();
     }
     
     /*public ArrayList<Object> Informacion(){    //Para obtener los datos de la lista resultante, se deben castear
@@ -58,10 +58,19 @@ public class Nodo {
     }
     
     public int nivelNodo(Nodo raiz){
-        if(raiz==this){
-            return 0;
-        }
-        return 1 + AVL.alturaA(this.right)-AVL.alturaA(this.left);
+    return nivelAux(raiz, this, 0);
+}
+
+    private int nivelAux(Nodo actual, Nodo objetivo, int nivel){
+        if(actual == null) return -1;
+
+        if(actual == objetivo) return nivel;
+
+        int izq = nivelAux(actual.getLeft(), objetivo, nivel + 1);
+        if(izq != -1) 
+           return izq;
+
+        return nivelAux(actual.getRight(), objetivo, nivel + 1);
     }
 
     //GETTERS
@@ -91,6 +100,14 @@ public class Nodo {
     
     //SETTERS
 
+    public void setCurso(Curso curso) {
+        this.curso = curso;
+        this.id = curso.getId();
+        
+        this.title = CursoManager.getTitle(id);
+        this.metrica = curso.getSatisfaction();
+    }
+
     public void setLeft(Nodo left) {
         this.left = left;
     }
@@ -102,5 +119,12 @@ public class Nodo {
     public void setMetrica(double metrica) {
         this.metrica = metrica;
     }
-    
+    public String infobasica(){
+        String info  = "===== CURSO =====\n" +
+                "ID: " + id + "\n" +
+                "Título: " + title + "\n" +
+                "Satisfacción: " + metrica + "\n" +
+                "=================\n";
+        return info;
+    }
 }

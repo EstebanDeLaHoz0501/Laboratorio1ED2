@@ -1,9 +1,9 @@
 digraph AVL {
 node [shape=circle];
 rankdir=TB;
-1535678 [label="ID: 1535678\nJava Programming for Complete Beginners\nRating: 4.386544549999999"];
-nullL1535678 [shape=point];
-1535678 -> nullL1535678;
-nullR1535678 [shape=point];
-1535678 -> nullR1535678;
+1576854 [label="ID: 1576854\nBeginning C++ Programming - From Beginner to Beyond\nRating: 4.08773"];
+nullL1576854 [shape=point];
+1576854 -> nullL1576854;
+nullR1576854 [shape=point];
+1576854 -> nullR1576854;
 }

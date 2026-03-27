@@ -221,13 +221,13 @@ public class OperacionesArbol {
     //PUNTO 4:
     
     //Llena la lista de nodos
-    public static void getAfterDateAux(Nodo root, Instant date, ArrayList<Nodo> nodos){
+    public static void getAfterDateAux(Nodo root, Instant date, ArrayList<String> nodos){
         if(root == null) return;
         
         if(root.getCurso().getCreated().isBefore(date)){
             return;
         } else{
-            nodos.add(root);
+            nodos.add(Integer.toString(root.getId()));
         }
         
         getAfterDateAux(root.getLeft(), date, nodos);
@@ -237,15 +237,15 @@ public class OperacionesArbol {
     }
     
     //retorna la lista de nodos
-    public static ArrayList<Nodo> getAfterDate(Nodo root, Instant date){
-        ArrayList<Nodo> afterDate = new ArrayList<>();
+    public static ArrayList<String> getAfterDate(Nodo root, Instant date){
+        ArrayList<String> afterDate = new ArrayList<>();
         getAfterDateAux(root, date, afterDate);
         
         return afterDate;
     }
     
     //Llena la lista de nodos
-    public static void classesInRangeAux(Nodo root, int min, int max, ArrayList<Nodo> nodos){
+    public static void classesInRangeAux(Nodo root, int min, int max, ArrayList<String> nodos){
         if (root == null) return;
         
         //para abreviar el if
@@ -254,7 +254,7 @@ public class OperacionesArbol {
         if(numLectures <= min || numLectures >= max){
             return;
         } else{
-            nodos.add(root);
+            nodos.add(Integer.toString(root.getId()));
         }
         
         classesInRangeAux(root.getLeft(), min, max, nodos);
@@ -263,8 +263,8 @@ public class OperacionesArbol {
     }
     
     //retorna la lista de nodos
-    public static ArrayList<Nodo> classesInRange(Nodo root, int min, int max){
-        ArrayList<Nodo> nodos = new ArrayList<>();
+    public static ArrayList<String> classesInRange(Nodo root, int min, int max){
+        ArrayList<String> nodos = new ArrayList<>();
         classesInRangeAux(root, min, max, nodos);
         
         return nodos;
@@ -313,42 +313,42 @@ public class OperacionesArbol {
        return sumTodasReseñas(arbol.getRaiz())/numNodos(arbol.getRaiz()); 
    }
    
-   public static void posHigherThanAvgAux(Nodo root, AVL arbol, ArrayList<Nodo> nodos){
+   public static void posHigherThanAvgAux(Nodo root, AVL arbol, ArrayList<String> nodos){
         if(root == null) return;
         double avg = promedioRatings(arbol);
         
         if(root.getCurso().getPositive_reviews() <= avg){
             return;
         }else{
-            nodos.add(root);
+            nodos.add(Integer.toString(root.getId()));
         }
         
         posHigherThanAvgAux(root.getLeft(), arbol, nodos);
         posHigherThanAvgAux(root.getRight(), arbol, nodos);
     }
    
-   public static void negHigherThanAvgAux(Nodo root, AVL arbol, ArrayList<Nodo> nodos){
+   public static void negHigherThanAvgAux(Nodo root, AVL arbol, ArrayList<String> nodos){
        if(root == null) return;
        double avg = promedioRatings(arbol);
         
        if(root.getCurso().getNegative_reviews() <= avg){
            return;
        }else{
-         nodos.add(root);
+         nodos.add(Integer.toString(root.getId()));
         }
         
         negHigherThanAvgAux(root.getLeft(), arbol, nodos);
         negHigherThanAvgAux(root.getRight(), arbol, nodos);
     }
     
-   public static void neutHigherThanAvgAux(Nodo root, AVL arbol, ArrayList<Nodo> nodos){
+   public static void neutHigherThanAvgAux(Nodo root, AVL arbol, ArrayList<String> nodos){
         if(root == null) return;
         double avg = promedioRatings(arbol);
         
         if(root.getCurso().getNeutral_reviews() <= avg){
             return;
         }else{
-            nodos.add(root);
+            nodos.add(Integer.toString(root.getId()));
         }
         
         neutHigherThanAvgAux(root.getLeft(), arbol, nodos);

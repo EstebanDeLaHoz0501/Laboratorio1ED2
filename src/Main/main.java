@@ -8,6 +8,8 @@ package Main;
  *
  * @author Esteban
  */
+
+//abandon all hope ye who enter here
 public class main {
 
 }

@@ -670,16 +670,25 @@ public class interfaz extends javax.swing.JFrame {
         
         String opcion = masReseñasBox.getSelectedItem().toString();
         //"Mas positivas que el promedio", "Mas negativas que el promedio", "Mas neutras que el promedio"
-        switch(opcion) {
-            case "Mas positivas que el promedio":
-              // code block
-              break;
-            case "Mas negativas que el promedio":
-              // code block
-              break;
-            case "Mas neutras que el promedio":
-              break;
-          }
+        //se llena la lista, p
+        if(opcion.equalsIgnoreCase("Mas positivas que el promedio")){
+            masPromedio = OperacionesArbol.posHigherThanAvg(tree.getRaiz(), tree);
+        }else if(opcion.equalsIgnoreCase("Mas negativas que el promedio")){
+            masPromedio = OperacionesArbol.negHigherThanAvg(tree.getRaiz(), tree);
+        }else if(opcion.equalsIgnoreCase("Mas neutras que el promedio")){
+            masPromedio = OperacionesArbol.neutHigherThanAvg(tree.getRaiz(), tree);
+        }
+        
+        
+        //se llena el textArea
+        if(masPromedio.isEmpty()){
+             resultArea.append("No se encontraron nodos");
+         } else{
+             for(String id : masPromedio){
+             resultArea.append(id + "\n");
+            }
+         }
+        
         
     }//GEN-LAST:event_masPromedioButtonActionPerformed
 

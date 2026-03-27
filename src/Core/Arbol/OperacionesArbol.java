@@ -355,24 +355,24 @@ public class OperacionesArbol {
         neutHigherThanAvgAux(root.getRight(), arbol, nodos);
     } 
    
-   public static ArrayList<Nodo> posHigherThanAvg(Nodo root, AVL arbol){
-       ArrayList<Nodo> nodos = new ArrayList<>();
+   public static ArrayList<String> posHigherThanAvg(Nodo root, AVL arbol){
+       ArrayList<String> nodos = new ArrayList<>();
        posHigherThanAvgAux(root, arbol, nodos);
        
        return nodos;
        
    }
    
-   public static ArrayList<Nodo> negHigherThanAvg(Nodo root, AVL arbol){
-       ArrayList<Nodo> nodos = new ArrayList<>();
+   public static ArrayList<String> negHigherThanAvg(Nodo root, AVL arbol){
+       ArrayList<String> nodos = new ArrayList<>();
        negHigherThanAvgAux(root, arbol, nodos);
        
        return nodos;
        
    }
    
-   public static ArrayList<Nodo> neutHigherThanAvg(Nodo root, AVL arbol){
-       ArrayList<Nodo> nodos = new ArrayList<>();
+   public static ArrayList<String> neutHigherThanAvg(Nodo root, AVL arbol){
+       ArrayList<String> nodos = new ArrayList<>();
        neutHigherThanAvgAux(root, arbol, nodos);
        
        return nodos;

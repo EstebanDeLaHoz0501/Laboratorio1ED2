@@ -44,7 +44,7 @@ public class Controladores {
             } 
             if(CM.addCurso(this.sc,"src/Core/dataset_courses_with_reviews",idS)){
                 if(tree.getRaiz()==null){
-                    System.out.println("aqui");
+                    
                     System.out.println(CM.getCursos()); //revisar
                     this.tree.setRaiz( OperacionesArbol.insertar1(this.tree, id));
                     Graphviz.exportarDOT(tree.getRaiz());
@@ -85,7 +85,7 @@ public class Controladores {
                 System.out.println(CM.getCursos());
                 //se borra el nodo, se dibuja el arbol
 
-                System.out.println(this.tree.getRaiz()+"esta es la raiz");
+                
                 this.tree.setRaiz(OperacionesArbol.delete(this.tree.getRaiz(), id, this.tree));
                 CM.delCurso(idS, true);
 

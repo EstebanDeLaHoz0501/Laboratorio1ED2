@@ -43,17 +43,16 @@ public class OperacionesArbol {
     }
     
     public static ArrayList<Nodo> search(Nodo root, int id){
-        System.out.println("a search entró "+root);
+       
         double metrica = CursoManager.getInstance().getCurso(id).getSatisfaction();
         return searchAux(metrica, root, null, null);
     }
     
     public static ArrayList<Nodo> searchAux(double metrica, Nodo p, Nodo pad, Nodo abue){
-        System.out.println("a search aux entró "+p);
-        System.out.println("la metrica a buscar es: "+metrica+" Y LA DE P ES "+p.getMetrica());
+        
         ArrayList<Nodo> lista = new ArrayList<>();
         if(p==null){
-            System.out.println("p es null");
+            
             lista.add(null);               
             lista.add(pad);
             lista.add(abue);
@@ -61,13 +60,13 @@ public class OperacionesArbol {
             return lista;
         }
         if(p.getMetrica()==metrica){
-            System.out.println("p es "+p);
+            
             lista.add(p);
             lista.add(pad);
             lista.add(abue);
             Nodo tio = null;
             if(abue != null){
-                System.out.println("abue no es null");
+               
                 if(abue.getLeft()==pad){
                     tio = abue.getRight();
                 }else{
@@ -75,10 +74,10 @@ public class OperacionesArbol {
                 }
             }
             lista.add(tio);
-            System.out.println("retorname");
+            
             return lista;
         }
-        System.out.println("queeee");
+        
         if(p.getMetrica() >metrica){
             return searchAux(metrica, p.getLeft(), p, pad);
         }else{
